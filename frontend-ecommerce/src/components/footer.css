@@ -88,6 +88,11 @@
   color: #e53935;
   font-size: 20px;
 }
+.feature-icon-img {
+  width: 34px;
+  height: auto;
+  display: block;
+}
 .feature-text strong { display: block; color: #fff; }
 .feature-text span { color: #bdbdbd; font-size: 13px }
 
@@ -127,6 +132,14 @@
 .social-icons a { display: inline-block; margin-right: 10px; color: #cfcfcf; text-decoration: none; padding: 6px }
 
 .footer-copy { text-align: center; margin-top: 12px; color: #bfbfbf; font-size: 13px }
+
+.social-icons a img {
+  width: 20px;
+  height: auto;
+  display: block;
+}
+.social-icons a { margin-right: 10
+  px; display:inline-block; }
 
 @media (max-width: 900px) {
   .features-bar { grid-template-columns: repeat(2, 1fr) }
@@ -201,12 +214,43 @@ footer {
   height: 28px;
 }
 
-
 .payment-methods, .certifications {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
+}
+
+.delivery-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #14bab9; 
+  -webkit-mask: url('../assets/icons/delivery-truck.svg') center/contain no-repeat;
+  mask: url('../assets/icons/delivery-truck.svg') center/contain no-repeat;
+}
+
+.price-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #14bab9; 
+  -webkit-mask: url('../assets/icons/price-tag.svg') center/contain no-repeat;
+  mask: url('../assets/icons/price-tag.svg') center/contain no-repeat;
+}
+
+.support-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #14bab9; 
+  -webkit-mask: url('../assets/icons/support-info.svg') center/contain no-repeat;
+  mask: url('../assets/icons/support-info.svg') center/contain no-repeat;
+}
+
+.payment-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #14bab9; 
+  -webkit-mask: url('../assets/icons/payment.svg') center/contain no-repeat;
+  mask: url('../assets/icons/payment.svg') center/contain no-repeat;
 }
 
 .logo-row {
@@ -297,3 +341,20 @@ svg.logo-with-bg {
   .logo-pci { height: 40px; }
   .logo-ssl { height: 40px; }
 }
+
+/* Full-bleed footer: make the footer span the full viewport width while
+   keeping inner content constrained by max-width containers. This prevents
+   white margins at the edges on wide screens. */
+.site-footer, footer {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Optional: if horizontal scroll appears on some viewports, uncomment:
+html, body { overflow-x: hidden; }
+*/

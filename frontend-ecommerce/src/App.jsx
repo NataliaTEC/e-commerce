@@ -6,7 +6,7 @@ import './App.css';
 export default function App() {
   return (
     <>
-      <Header />
+      
       <Routes>
         {/* Define your routes here */}
       </Routes>

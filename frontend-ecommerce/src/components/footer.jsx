@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/nuevologo.png'
 import CallCenterIcon from '../assets/icons/CallCenter.svg'
+import PaymentMethods from '../assets/payment-methods.webp'
+import fbIcon from '../assets/icons/facebook.svg'
+import igIcon from '../assets/icons/instagram.svg'
+import ytIcon from '../assets/icons/youtube.svg'
+import wtIcon from '../assets/icons/whatsappl.svg'
+import ttIcon from '../assets/icons/tiktok.svg'
+
+
 import './footer.css'
 
 export default function Footer() {
@@ -10,28 +17,28 @@ export default function Footer() {
       {/* Features bar */}
       <div className="features-bar">
         <div className="feature">
-          <div className="feature-icon">💲</div>
+          <div className="price-icon" aria-hidden="true" />
           <div className="feature-text">
             <strong>Precios Competitivos.</strong>
             <span>Tecnología a tu alcance.</span>
           </div>
         </div>
         <div className="feature">
-          <div className="feature-icon">🎧</div>
+          <div className="support-icon" aria-hidden="true" />
           <div className="feature-text">
             <strong>Soporte Experto.</strong>
             <span>La ayuda que necesitas.</span>
           </div>
         </div>
         <div className="feature">
-          <div className="feature-icon">💳</div>
+          <div className="payment-icon" aria-hidden="true" />
           <div className="feature-text">
             <strong>Pago En Línea.</strong>
             <span>Paga con seguridad.</span>
           </div>
         </div>
         <div className="feature">
-          <div className="feature-icon">🚚</div>
+          <div className="delivery-icon" aria-hidden="true" />
           <div className="feature-text">
             <strong>Entrega Rápida.</strong>
             <span>A todo el territorio nacional.</span>
@@ -85,20 +92,18 @@ export default function Footer() {
         <div className="payments">
           <h6>Formas de Pago:</h6>
           <div className="payment-logos">
-            <img src="https://www.tiendamonge.com/static/version1757340799/frontend/Omnipro/monge_base/es_CR/images/visa.svg" alt="visa" />
-            <img src="https://www.tiendamonge.com/static/version1757340799/frontend/Omnipro/monge_base/es_CR/images/mastercard.svg" alt="mastercard" />
-            <img src="https://www.tiendamonge.com/static/version1757340799/frontend/Omnipro/monge_base/es_CR/images/Logo_PCI.png" alt="pci" />
+            <img src={PaymentMethods} alt="Formas de Pago" />
           </div>
         </div>
 
         <div className="socials">
           <h6>Encuéntranos en nuestras redes sociales:</h6>
           <div className="social-icons">
-            <a href="#" aria-label="facebook">FB</a>
-            <a href="#" aria-label="instagram">IG</a>
-            <a href="#" aria-label="youtube">YT</a>
-            <a href="#" aria-label="linkedin">IN</a>
-            <a href="#" aria-label="tiktok">TT</a>
+            <a href="#" aria-label="facebook"><img src={fbIcon} alt="Facebook" /></a>
+            <a href="#" aria-label="instagram"><img src={igIcon} alt="Instagram" /></a>
+            <a href="#" aria-label="youtube"><img src={ytIcon} alt="YouTube" /></a>
+            <a href="#" aria-label="whatsapp"><img src={wtIcon} alt="WhatsApp" /></a>
+            <a href="#" aria-label="tiktok"><img src={ttIcon} alt="TikTok" /></a>
           </div>
         </div>
 

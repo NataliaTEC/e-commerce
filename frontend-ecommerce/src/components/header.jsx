@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/nuevologo.png'
+import logo from '../assets/logo.png'
 import searchIcon from '../assets/icons/microfono.svg'
 import cuentaIcon from '../assets/icons/cuenta.svg'
 import cartIcon from '../assets/icons/bag.svg'
