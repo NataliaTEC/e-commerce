@@ -128,8 +128,17 @@
 
 
 .footer-bottom { max-width: 1200px; margin: 18px auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.02) }
-.payment-logos img { height: 28px; margin-right: 12px; opacity: 0.95 }
-.social-icons a { display: inline-block; margin-right: 10px; color: #cfcfcf; text-decoration: none; padding: 6px }
+.payment-logos img { height: 28px; margin-right: 6px; opacity: 0.95 }
+.social-icons a { display: inline-block; margin-right: 3px; color: #cfcfcf; text-decoration: none; padding: 6px }
+
+/* Aumentar ligeramente el tamaño de los títulos en la zona de footer-bottom */
+.footer-bottom .payments h6,
+.footer-bottom .socials h6 {
+  font-size: 16px; /* un poquito más grandes */
+  color: #e6e6e6;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
 
 .footer-copy { text-align: center; margin-top: 12px; color: #bfbfbf; font-size: 13px }
 
@@ -138,8 +147,7 @@
   height: auto;
   display: block;
 }
-.social-icons a { margin-right: 10
-  px; display:inline-block; }
+.social-icons a { margin-right: 3px; display: inline-block; }
 
 @media (max-width: 900px) {
   .features-bar { grid-template-columns: repeat(2, 1fr) }
@@ -256,7 +264,7 @@ footer {
 .logo-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 
@@ -332,6 +340,12 @@ svg.logo-with-bg {
   
   .logo-row {
     gap: 15px;
+  }
+
+  /* Ajuste móvil: reducir un poco los h6 para que no quiebren layout */
+  .footer-bottom .payments h6,
+  .footer-bottom .socials h6 {
+    font-size: 14px;
   }
   
   .logo-visa-pay { height: 35px; }
