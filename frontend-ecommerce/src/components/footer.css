@@ -1,0 +1,299 @@
+.site-footer {
+  background: #1d1d1f;
+  color: #ddd;
+  padding: 0 16px 24px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+}
+
+.footer-tag {
+  color: #bdbdbd;
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 32px;
+  flex: 1 1 400px;
+}
+
+.footer-col h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.footer-col a {
+  display: block;
+  color: #cfcfcf;
+  text-decoration: none;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-rights {
+  min-width: 200px;
+  text-align: right;
+  color: #bdbdbd;
+  font-size: 13px;
+}
+
+/* New styles for the richer footer */
+.features-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.feature {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #fff;
+}
+.feature-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: rgba(229,57,53,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e53935;
+  font-size: 20px;
+}
+.feature-text strong { display: block; color: #fff; }
+.feature-text span { color: #bdbdbd; font-size: 13px }
+
+.footer-main {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.9fr;
+  gap: 28px;
+  align-items: start;
+}
+.footer-col h5 { color: #fff; margin: 0 0 12px 0; }
+.stores-grid { display: flex; gap: 28px }
+.stores-grid ul { list-style: none; padding: 0; margin: 0; color: #cfcfcf }
+.stores-grid li { margin-bottom: 8px; font-size: 14px }
+
+.links ul { list-style: none; padding: 0; margin: 0 }
+.links li { margin-bottom: 8px }
+.links a { color: #cfcfcf; text-decoration: none }
+.links a:hover { color: #fff }
+
+.footer-col.contact,
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact .call-icon { font-size: 36px; color: #e53935; margin-bottom: 8px }
+.contact .call-icon img { width: 72px; height: auto; display: block; margin: 0 auto }
+.contact .call-number { font-size: 36px; font-weight: 700; color: #fff; margin: 8px 0 }
+
+
+.footer-bottom { max-width: 1200px; margin: 18px auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.02) }
+.payment-logos img { height: 28px; margin-right: 12px; opacity: 0.95 }
+.social-icons a { display: inline-block; margin-right: 10px; color: #cfcfcf; text-decoration: none; padding: 6px }
+
+.footer-copy { text-align: center; margin-top: 12px; color: #bfbfbf; font-size: 13px }
+
+@media (max-width: 900px) {
+  .features-bar { grid-template-columns: repeat(2, 1fr) }
+  .footer-main { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start }
+}
+
+@media (max-width: 480px) {
+  .contact .call-icon img { width: 56px }
+  .contact .call-number { font-size: 26px }
+}
+
+@media (max-width: 768px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-rights { text-align: left; }
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+footer {
+  background-color: #198b52;
+  color: #ffffff;
+  padding: 40px 0;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #444;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-column ul { list-style: none; padding: 0; margin: 0; }
+.footer-column li { margin-bottom: 10px; }
+.footer-column a, .footer-column p { color: #cccccc; text-decoration: none; font-size: 14px; }
+.footer-column a:hover { color: #ffffff; text-decoration: underline; }
+.footer-column p { line-height: 1.6; }
+
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-icons a { color: #ffffff; transition: transform 0.2s ease; }
+.social-icons a:hover { transform: scale(1.1); }
+.social-icons svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+.payment-methods, .certifications {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.logo-with-bg {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 2px 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 0;
+}
+
+svg.logo-with-bg {
+  background-color: transparent;
+  padding: 0;
+}
+
+.logo-visa-pay { height: 40px; width: auto; }
+.logo-mastercard-pay { height: 30px; width: auto; }
+
+.logo-visa-cert { height: 40px; width: auto; }
+.logo-mastercard-cert { height: 40px; width: auto; }
+.logo-pci { height: 50px; width: auto; }
+.logo-ssl { height: 50px; width: auto; }
+
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 15px;
+}
+
+.footer-logo img { max-height: 30px; }
+.footer-copyright p { font-size: 12px; color: #cccccc; margin: 0; text-align: right; }
+
+
+@media (max-width: 768px) {
+  footer {
+    padding: 30px 15px;
+  }
+  
+  .footer-main, .footer-bottom {
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .footer-column {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .footer-column h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  
+  .footer-column a, .footer-column p {
+    font-size: 13px;
+  }
+  
+  .footer-copyright p {
+    text-align: left;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  
+  .payment-methods, .certifications {
+    align-items: flex-start;
+  }
+  
+  .logo-row {
+    gap: 15px;
+  }
+  
+  .logo-visa-pay { height: 35px; }
+  .logo-mastercard-pay { height: 25px; }
+  .logo-visa-cert { height: 35px; }
+  .logo-mastercard-cert { height: 35px; }
+  .logo-pci { height: 40px; }
+  .logo-ssl { height: 40px; }
+}
