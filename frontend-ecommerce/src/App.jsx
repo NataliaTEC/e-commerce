@@ -1,17 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/header.jsx";
-import Footer from "./components/footer.jsx";
-import './App.css';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import './App.css'
+import PaginaPrincipal from './views/homepage'
 
 export default function App() {
   return (
-    <>
-      
-      <Routes>
-        {/* Define your routes here */}
-      </Routes>
-
-      <Footer />
-    </>
-  );
+    <div id="app" className="site-container">
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<PaginaPrincipal />} />
+          {/* Add other routes here when ready */}
+        </Routes>
+      </main>
+    </div>
+  )
 }
