@@ -5,10 +5,16 @@ import searchIcon from '../assets/icons/microfono.svg'
 import cuentaIcon from '../assets/icons/cuenta.svg'
 import cartIcon from '../assets/icons/bag.svg'
 import './header.css'
+import categories from '../data/categories'
+import storesIcon from '../assets/icons/stores.svg'
+import paymentsIcon from '../assets/icons/paymentMethods.svg'
+import aboutIcon from '../assets/icons/people.svg'
 
 export default function Header() {
   const headerRef = useRef(null)
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
+  const [megaOpen, setMegaOpen] = useState(false)
+  const [activeCat, setActiveCat] = useState(categories[0] || null)
 
   useEffect(() => {
     const updateHeaderHeight = () => {
@@ -19,7 +25,8 @@ export default function Header() {
 
     updateHeaderHeight()
     const ro = new ResizeObserver(updateHeaderHeight)
-    if (headerRef.current) ro.observe(headerRef.current)
+    const observed = headerRef.current
+    if (observed) ro.observe(observed)
 
     const handleClickOutside = (e) => {
       if (headerRef.current && !headerRef.current.contains(e.target)) {
@@ -30,7 +37,7 @@ export default function Header() {
     document.addEventListener('click', handleClickOutside)
     return () => {
       document.removeEventListener('click', handleClickOutside)
-      if (ro && headerRef.current) ro.unobserve(headerRef.current)
+      if (ro && observed) ro.unobserve(observed)
     }
   }, [])
 
@@ -99,6 +106,63 @@ export default function Header() {
           </Link>
         </div>
       </header>
+
+      {/* Bottom navigation with categories hamburger and quick links */}
+      <nav className="bottom-nav" onMouseLeave={() => setMegaOpen(false)}>
+        <div className="bottom-inner">
+          <div
+            className="all-categories"
+            onMouseEnter={() => setMegaOpen(true)}
+            onClick={() => setMegaOpen((s) => !s)}
+            aria-haspopup="true"
+            aria-expanded={megaOpen}
+          >
+            <button className="hamburger-sm" aria-label="Todas las categorías">
+              <span />
+              <span />
+              <span />
+            </button>
+            <span className="all-cats-label">Todas las categorías</span>
+          </div>
+          <div className="bottom-links">
+            <Link to="/stores"><img src={storesIcon} alt="Nuestras Tiendas" className="bottom-link-icon"/>Nuestras tiendas</Link>
+            <Link to="/payments"><img src={paymentsIcon} alt="Métodos de pago" className="bottom-link-icon"/>Métodos de pago</Link>
+            <Link to="/about"><img src={aboutIcon} alt="Sobre nosotros" className="bottom-link-icon"/>Sobre nosotros</Link>
+          </div>
+        </div>
+
+        {/* Mega menu panel */}
+        <div className={`mega-menu ${megaOpen ? 'open' : ''}`} onMouseLeave={() => setMegaOpen(false)}>
+          <div className="mega-inner">
+            <div className="mega-cats">
+              {categories.map((cat) => (
+                <div
+                  key={cat.id}
+                  className={`mega-cat ${activeCat && activeCat.id === cat.id ? 'active' : ''}`}
+                  onMouseEnter={() => setActiveCat(cat)}
+                >
+                  <button className="mega-cat-btn">{cat.name}</button>
+                </div>
+              ))}
+            </div>
+
+            <div className="mega-content">
+              {activeCat ? (
+                <div className="mega-panel">
+                  <h4>{activeCat.name}</h4>
+                  <ul>
+                    {activeCat.sub.map((s, i) => (
+                      <li key={i}><Link to={`/catalog?categoria=${encodeURIComponent(s)}`}>{s}</Link></li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div className="mega-panel"><p>Seleccione una categoría</p></div>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
 
 
       {isMobileSearchOpen && (

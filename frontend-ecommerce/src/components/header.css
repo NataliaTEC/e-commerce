@@ -243,6 +243,80 @@ form.search-container {
   text-align: center;
 }
 
+/* Bottom navigation (categories and quick links) */
+.bottom-nav {
+  position: relative;
+  width: 100%;
+  background: #111;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  z-index: 999;
+}
+.bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centrar todo */
+  padding: 10px 16px;
+  gap: 3cm; /* espacio fijo entre 'Todas las categorías' y links */
+}
+.all-categories { display:flex; align-items:center; gap:8px; cursor:pointer }
+.hamburger-sm { display:inline-flex; flex-direction:column; gap:4px; background:none; border:none; padding:8px; border-radius:6px }
+.hamburger-sm span { width:18px; height:2px; background:#14bab9; display:block; border-radius:2px }
+.all-cats-label { color:#fff; font-weight:600 }
+.bottom-links {
+  display:flex;
+  align-items:center;
+  justify-content:center; /* centrar los títulos */
+  gap:3cm; /* espacio fijo entre títulos pedido por usuario */
+}
+.bottom-links a {
+  color:#ccc;
+  text-decoration:none;
+  padding:6px 10px;
+  font-weight:600;
+  position:relative;
+}
+.bottom-links a { display:flex; align-items:center; gap:8px }
+.bottom-link-icon { width:20px; height:auto; display:inline-block }
+.bottom-links a::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.06);
+}
+.bottom-links a:last-child::after { display:none }
+.bottom-links a:hover { color:#fff; }
+
+/* Mega menu panel */
+.mega-menu { position:absolute; left:0; right:0; top:100%; background:#fff; color:#222; display:none; box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+.mega-menu.open { display:block }
+.mega-inner { max-width:1200px; margin:0 auto; display:flex; gap:20px; padding:20px }
+.mega-cats { width:280px; border-right:1px solid #eee; padding-right:12px }
+.mega-cat { padding:6px 8px; display:flex; justify-content:center }
+.mega-cat-btn { background:none; border:none; text-align:center; width:100%; padding:10px 6px; cursor:pointer; font-weight:700; color:#333; border-radius:6px }
+.mega-cat-btn:hover { background: rgba(20,186,185,0.06); color: var(--accent, #14bab9) }
+.mega-cat.active .mega-cat-btn { color:var(--accent, #14bab9); background: rgba(20,186,185,0.08) }
+.mega-content { flex:1; padding-left:12px }
+.mega-panel h4 { margin:0 0 8px 0; text-align:center }
+.mega-panel ul { list-style:none; padding:0; margin:0; display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
+.mega-panel li { width: 45%; margin-bottom:8px; text-align:center }
+.mega-panel li a { color:#333; text-decoration:none }
+.mega-panel li a:hover { text-decoration:underline }
+
+@media (max-width: 915px) {
+  .bottom-inner { padding:8px }
+  .mega-inner { flex-direction:column }
+  .mega-cats { width:100%; border-right:none; padding-right:0 }
+  .mega-content { padding-left:0 }
+  /* Reducir gap en pantallas pequeñas para evitar overflow */
+  .bottom-links { gap: 12px; }
+}
+
 .mobile-search-overlay {
   background: rgba(0,0,0,0.4);
   position: fixed;
