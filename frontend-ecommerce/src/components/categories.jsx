@@ -12,19 +12,19 @@ export default function Categories() {
   const categories = [
     { id: 1, nombre: 'Celulares', icono: new URL('../assets/Categories/phone.svg', import.meta.url).href, ruta: 'Celulares' },
     { id: 2, nombre: 'Computadoras', icono: new URL('../assets/Categories/laptop.svg', import.meta.url).href, ruta: 'Computadoras' },
-    { id: 3, nombre: 'Tv y Video', icono: new URL('../assets/Categories/tv.svg', import.meta.url).href, ruta: 'Tv y Video' },
-    { id: 4, nombre: 'Parlantes', icono: new URL('../assets/Categories/speaker.svg', import.meta.url).href, ruta: 'Parlantes' },
-    { id: 5, nombre: 'Controles', icono: new URL('../assets/Categories/gamecontroller.svg', import.meta.url).href, ruta: 'Controles' },
-    { id: 6, nombre: 'Cámaras', icono: new URL('../assets/Categories/camera.svg', import.meta.url).href, ruta: 'Cámaras' },
-    { id: 7, nombre: 'Audifonos', icono: new URL('../assets/Categories/headset.svg', import.meta.url).href, ruta: 'Audifonos' },
-    { id: 8, nombre: 'Teclados', icono: new URL('../assets/Categories/keyboard.svg', import.meta.url).href, ruta: 'Teclados' },
-    { id: 9, nombre: 'Mouse', icono: new URL('../assets/Categories/mouse.svg', import.meta.url).href, ruta: 'Mouse' },
-    { id: 10, nombre: 'Volantes', icono: new URL('../assets/Categories/gamesteeringwheel.svg', import.meta.url).href, ruta: 'Volantes' },
-    { id: 11, nombre: 'Impresoras', icono: new URL('../assets/Categories/printer.svg', import.meta.url).href, ruta: 'Impresoras' },
-    { id: 12, nombre: 'Vigilancia', icono: new URL('../assets/Categories/securitycamera.svg', import.meta.url).href, ruta: 'Vigilancia' },
-    { id: 13, nombre: 'Micrófonos', icono: new URL('../assets/Categories/microphone.svg', import.meta.url).href, ruta: 'Microfonos' },
-    { id: 14, nombre: 'Smart watch', icono: new URL('../assets/Categories/smartwatch.svg', import.meta.url).href, ruta: 'Smart watch' },
-    { id: 15, nombre: 'Accesorios', icono: new URL('../assets/Categories/accessories.svg', import.meta.url).href, ruta: 'Accesorios' },
+    { id: 3, nombre: 'Parlantes', icono: new URL('../assets/Categories/speaker.svg', import.meta.url).href, ruta: 'Parlantes' },
+    { id: 4, nombre: 'Controles', icono: new URL('../assets/Categories/gamecontroller.svg', import.meta.url).href, ruta: 'Controles' },
+    { id: 5, nombre: 'Cámaras', icono: new URL('../assets/Categories/camera.svg', import.meta.url).href, ruta: 'Cámaras' },
+    { id: 6, nombre: 'Accesorios', icono: new URL('../assets/Categories/accessories.svg', import.meta.url).href, ruta: 'Accesorios' },
+    { id: 7, nombre: 'Smart watch', icono: new URL('../assets/Categories/smartwatch.svg', import.meta.url).href, ruta: 'Smart watch' },
+    { id: 8, nombre: 'Impresoras', icono: new URL('../assets/Categories/printer.svg', import.meta.url).href, ruta: 'Impresoras' },
+    { id: 9, nombre: 'Vigilancia', icono: new URL('../assets/Categories/securitycamera.svg', import.meta.url).href, ruta: 'Vigilancia' },
+    { id: 10, nombre: 'Micrófonos', icono: new URL('../assets/Categories/microphone.svg', import.meta.url).href, ruta: 'Microfonos' },
+    { id: 11, nombre: 'Mouse', icono: new URL('../assets/Categories/mouse.svg', import.meta.url).href, ruta: 'Mouse' },
+    { id: 12, nombre: 'Volantes', icono: new URL('../assets/Categories/gamesteeringwheel.svg', import.meta.url).href, ruta: 'Volantes' },
+    { id: 13, nombre: 'Tv y Video', icono: new URL('../assets/Categories/tv.svg', import.meta.url).href, ruta: 'Tv y Video' },
+    { id: 14, nombre: 'Audifonos', icono: new URL('../assets/Categories/headset.svg', import.meta.url).href, ruta: 'Audifonos' },
+    { id: 15, nombre: 'Teclados', icono: new URL('../assets/Categories/keyboard.svg', import.meta.url).href, ruta: 'Teclados' }
   ]
 
   const infiniteCategories = [...categories, ...categories, ...categories]
