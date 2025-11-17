@@ -16,6 +16,13 @@ export default function Header() {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
+  const [locale, setLocale] = useState(() => {
+    try {
+      return localStorage.getItem('locale') || document.documentElement.lang || 'es'
+    } catch {
+      return 'es'
+    }
+  })
 
   useEffect(() => {
     const updateHeaderHeight = () => {
@@ -41,6 +48,19 @@ export default function Header() {
       if (ro && observed) ro.unobserve(observed)
     }
   }, [])
+
+  useEffect(() => {
+    try {
+      document.documentElement.lang = locale
+    } catch (e) {
+      console.warn('Could not set document.lang', e)
+    }
+    try {
+      localStorage.setItem('locale', locale)
+    } catch (e) {
+      console.warn('Could not persist locale', e)
+    }
+  }, [locale])
 
   return (
     <div className="header-navigation-container" ref={headerRef}>
@@ -84,11 +104,20 @@ export default function Header() {
             <img src={searchIcon} alt="Buscar" className="svg-icon mobile-search-icon" />
           </button>
           
-          <Link to="/lenguaje" className="user-button" aria-label="Lenguaje">
+          <button
+            type="button"
+            className="user-button language-toggle"
+            aria-label="Cambiar idioma"
+            onClick={() => setLocale((prev) => (prev && String(prev).toLowerCase().startsWith('en') ? 'es' : 'en'))}
+          >
             <span className="icon-circle">
               <img src={LangIcon} alt="Lenguaje" className="svg-icon user-icon" />
             </span>
-          </Link>
+            <span className="language-label">
+              {String(locale).toLowerCase().startsWith('en') ? 'English' : 'Español'}
+            </span>
+            <span className="language-caret">▾</span>
+          </button>
 
           <Link to="/Login" className="user-button" aria-label="Menú de usuario">
             <span className="icon-circle">

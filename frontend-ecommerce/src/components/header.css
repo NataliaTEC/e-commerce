@@ -408,3 +408,10 @@ form.search-container {
   .logo { height: 34px; }
   .header-icons { gap: 4px; }
 }
+
+/* Language toggle styling */
+.language-toggle{ display:inline-flex; align-items:center; gap:0.5rem; background:transparent; border:1px solid var(--accent,#14bab9); padding:6px 10px; border-radius:999px; cursor:pointer; color:var(--text,#032323); font-weight:600 }
+.language-toggle .icon-circle{ width:28px; height:28px }
+.language-toggle .language-label{ font-size:0.95rem }
+.language-toggle .language-caret{ font-size:0.9rem; opacity:0.8 }
+@media (max-width:600px){ .language-toggle .language-label{ display:none } }
