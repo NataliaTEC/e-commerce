@@ -185,36 +185,37 @@ export default function Header() {
               {activeCat ? (
                 <div className="mega-panel">
                   <h4>{activeCat.name}</h4>
-                  <ul>
+
+                  <div className="mega-subsections">
                     {Array.isArray(activeCat.sub) && activeCat.sub.length > 0 ? (
                       activeCat.sub.map((s, i) => {
                         if (typeof s === 'string') {
                           return (
-                            <li key={i}>
+                            <div key={i} className="mega-subsection simple">
                               <Link to={`/catalog?categoria=${encodeURIComponent(s)}`}>{s}</Link>
-                            </li>
+                            </div>
                           )
                         }
 
                         if (s && typeof s === 'object') {
                           return (
-                            <li key={i} className="mega-subsection">
+                            <div key={i} className="mega-subsection">
                               <div className="mega-subsection-title">{s.name}</div>
                               <ul className="mega-subsection-products">
                                 {Array.isArray(s.products) && s.products.map((p, j) => (
                                   <li key={j}><Link to={`/catalog?categoria=${encodeURIComponent(p)}`}>{p}</Link></li>
                                 ))}
                               </ul>
-                            </li>
+                            </div>
                           )
                         }
 
                         return null
                       })
                     ) : (
-                      <li>No hay subcategorías</li>
+                      <div className="mega-subsection empty">No hay subcategorías</div>
                     )}
-                  </ul>
+                  </div>
                 </div>
               ) : (
                 <div className="mega-panel"><p>Seleccione una categoría</p></div>

@@ -325,8 +325,8 @@ form.search-container {
 /* Grid layout for subsections to mimic multi-column mega menu */
 .mega-panel .mega-subsections {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: start;
 }
 .mega-subsection { margin-bottom: 6px; }
@@ -371,6 +371,11 @@ form.search-container {
 .mega-subsection-products li { margin:6px 0 }
 .mega-subsection-products li a { color:#666; text-decoration:none; display:block; padding:4px 6px; border-radius:4px }
 .mega-subsection-products li a:hover { background: rgba(20,186,183,0.06); color:#14bab7 }
+
+/* Styles for simple subcategory cells (strings) to appear as compact cells */
+.mega-subsection.simple { display:flex; align-items:center; padding:6px 8px; border-radius:6px }
+.mega-subsection.simple a { color:#333; font-weight:700; padding:6px 4px; display:block }
+.mega-subsection.simple:hover { background: rgba(20,186,183,0.04) }
 
 /* Responsive: reduce to 2 columns under 1000px and 1 column on small screens */
 @media (max-width: 1000px) {
