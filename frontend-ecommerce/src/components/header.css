@@ -292,19 +292,19 @@ form.search-container {
 .bottom-links a:last-child::after { display:none }
 .bottom-links a:hover { color:#fff; }
 
-/* Mega menu panel */
-.mega-menu { position:absolute; left:0; right:0; top:100%; background:#fff; color:#222; display:none; box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+/* Mega menu panel (centered, limited width) */
+.mega-menu { position:absolute; left:50%; transform:translateX(-50%); top:100%; width:1100px; max-width:calc(100% - 40px); display:none; z-index:1000 }
 .mega-menu.open { display:block }
-.mega-inner { max-width:1200px; margin:0 auto; display:flex; gap:20px; padding:20px }
+.mega-inner { display:flex; gap:20px; padding:20px; background:#fff; box-shadow:0 12px 30px rgba(0,0,0,0.12); border-radius:6px }
 .mega-cats { width:280px; border-right:1px solid #eee; padding-right:12px }
-.mega-cat { padding:6px 8px; display:flex; justify-content:center }
-.mega-cat-btn { background:none; border:none; text-align:center; width:100%; padding:10px 6px; cursor:pointer; font-weight:700; color:#333; border-radius:6px }
+.mega-cat { padding:6px 8px; display:flex; justify-content:flex-start }
+.mega-cat-btn { background:none; border:none; text-align:left; width:100%; padding:10px 6px; cursor:pointer; font-weight:700; color:#333; border-radius:6px }
 .mega-cat-btn:hover { background: rgba(20,186,185,0.06); color: var(--accent, #14bab9) }
 .mega-cat.active .mega-cat-btn { color:var(--accent, #14bab9); background: rgba(20,186,185,0.08) }
 .mega-content { flex:1; padding-left:12px }
-.mega-panel h4 { margin:0 0 8px 0; text-align:center }
-.mega-panel ul { list-style:none; padding:0; margin:0; display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
-.mega-panel li { width: 45%; margin-bottom:8px; text-align:center }
+.mega-panel h4 { margin:0 0 8px 0; text-align:left }
+.mega-panel ul { list-style:none; padding:0; margin:0; display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start }
+.mega-panel li { width: 45%; margin-bottom:8px; text-align:left }
 .mega-panel li a { color:#333; text-decoration:none }
 .mega-panel li a:hover { text-decoration:underline }
 
