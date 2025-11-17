@@ -316,6 +316,7 @@ form.search-container {
 .mega-cats { width:280px; border-right:1px solid #eee; padding-right:12px }
 .mega-cat { padding:6px 8px; display:flex; justify-content:flex-start }
 .mega-cat-btn { background:none; border:none; text-align:left; width:100%; padding:10px 6px; cursor:pointer; font-weight:700; color:#333; border-radius:6px }
+.mega-cat-btn { font-size: 1.05rem; }
 .mega-cat-btn:hover { background: rgba(20,186,185,0.06); color: var(--accent, #14bab9) }
 .mega-cat.active .mega-cat-btn { color:var(--accent, #14bab9); background: rgba(20,186,185,0.08) }
 .mega-content { flex:1; padding-left:12px }
@@ -376,6 +377,7 @@ form.search-container {
   .mega-inner { flex-direction:column }
   .mega-cats { width:100%; border-right:none; padding-right:0 }
   .mega-content { padding-left:0 }
+  .mega-cat-btn { font-size: 1rem }
   /* Reducir gap en pantallas pequeñas para evitar overflow */
   .bottom-links { gap: 12px; }
 }
