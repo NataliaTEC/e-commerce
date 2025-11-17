@@ -308,6 +308,52 @@ form.search-container {
 .mega-panel li a { color:#333; text-decoration:none }
 .mega-panel li a:hover { text-decoration:underline }
 
+/* Subcategory title highlight + item hover using accent color */
+.mega-panel h4 {
+  position:relative;
+  padding-bottom:10px;
+  margin-bottom:14px;
+  font-size:1.05rem;
+  letter-spacing:0.6px;
+  color:#222;
+}
+.mega-panel h4::after {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 72px;
+  background: transparent;
+  border-radius: 3px;
+  margin-top:8px;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+.mega-panel h4:hover::after {
+  background: #14bab7;
+  transform: translateY(0);
+}
+
+.mega-panel ul { padding:0; margin:0 }
+.mega-panel li { margin-bottom:6px }
+.mega-panel li a {
+  display:block;
+  padding:8px 10px;
+  border-radius:6px;
+  color:#666;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.mega-panel li a:hover,
+.mega-panel li a:focus {
+  background: rgba(20,186,183,0.08); /* subtle background */
+  color: #14bab7; /* accent color on hover */
+  text-decoration:none;
+}
+
+/* make active/selected item more visible */
+.mega-panel li a.active {
+  background: rgba(20,186,183,0.12);
+  color: #14bab7;
+}
+
 @media (max-width: 915px) {
   .bottom-inner { padding:8px }
   .mega-inner { flex-direction:column }
