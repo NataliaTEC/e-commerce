@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import searchIcon from '../assets/icons/microfono.svg'
-import cuentaIcon from '../assets/icons/cuenta.svg'
+import cuentaIcon from '../assets/icons/user.svg'
 import cartIcon from '../assets/icons/bag.svg'
+import LangIcon from '../assets/icons/language.svg'
 import './header.css'
 import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
@@ -82,6 +83,12 @@ export default function Header() {
           <button className="search-button-mobile" aria-label="Buscar" onClick={() => setIsMobileSearchOpen((s) => !s)}>
             <img src={searchIcon} alt="Buscar" className="svg-icon mobile-search-icon" />
           </button>
+          
+          <Link to="/lenguaje" className="user-button" aria-label="Lenguaje">
+            <span className="icon-circle">
+              <img src={LangIcon} alt="Lenguaje" className="svg-icon user-icon" />
+            </span>
+          </Link>
 
           <Link to="/Login" className="user-button" aria-label="Menú de usuario">
             <span className="icon-circle">
