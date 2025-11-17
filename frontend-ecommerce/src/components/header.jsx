@@ -186,9 +186,34 @@ export default function Header() {
                 <div className="mega-panel">
                   <h4>{activeCat.name}</h4>
                   <ul>
-                    {activeCat.sub.map((s, i) => (
-                      <li key={i}><Link to={`/catalog?categoria=${encodeURIComponent(s)}`}>{s}</Link></li>
-                    ))}
+                    {Array.isArray(activeCat.sub) && activeCat.sub.length > 0 ? (
+                      activeCat.sub.map((s, i) => {
+                        if (typeof s === 'string') {
+                          return (
+                            <li key={i}>
+                              <Link to={`/catalog?categoria=${encodeURIComponent(s)}`}>{s}</Link>
+                            </li>
+                          )
+                        }
+
+                        if (s && typeof s === 'object') {
+                          return (
+                            <li key={i} className="mega-subsection">
+                              <div className="mega-subsection-title">{s.name}</div>
+                              <ul className="mega-subsection-products">
+                                {Array.isArray(s.products) && s.products.map((p, j) => (
+                                  <li key={j}><Link to={`/catalog?categoria=${encodeURIComponent(p)}`}>{p}</Link></li>
+                                ))}
+                              </ul>
+                            </li>
+                          )
+                        }
+
+                        return null
+                      })
+                    ) : (
+                      <li>No hay subcategorías</li>
+                    )}
                   </ul>
                 </div>
               ) : (
