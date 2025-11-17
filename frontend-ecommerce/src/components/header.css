@@ -181,8 +181,25 @@ form.search-container {
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
-.user-button:hover, .cart-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.user-button, .cart-button, .wishlist-button {
+  transition: background-color 140ms ease, transform 120ms ease;
+}
+
+/* Minimal, natural hover for header icon buttons */
+.user-button:hover, .cart-button:hover, .wishlist-button:hover {
+  background-color: rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
+
+.user-button .icon-circle,
+.cart-button .icon-circle,
+.wishlist-button .icon-circle {
+  transition: background-color 140ms ease, transform 120ms ease, border-color 140ms ease;
+}
+.user-button:hover .icon-circle,
+.cart-button:hover .icon-circle,
+.wishlist-button:hover .icon-circle {
+  background-color: rgba(255,255,255,0.04);
 }
 
 .profile-name, .cart-text {
@@ -458,6 +475,6 @@ form.search-container {
 /* Language toggle styling */
 .language-toggle{ display:inline-flex; align-items:center; gap:0.5rem; background:transparent; border:1px solid var(--accent,#14bab9); padding:6px 10px; border-radius:999px; cursor:pointer; color:var(--text,#032323); font-weight:600 }
 .language-toggle .icon-circle{ width:28px; height:28px }
-.language-toggle .language-label{ font-size:0.95rem }
-.language-toggle .language-caret{ font-size:0.9rem; opacity:0.8 }
+.language-toggle .language-label{ font-size:0.95rem; color: #fff }
+.language-toggle .language-caret{ font-size:0.9rem; opacity:0.95; color: #fff }
 @media (max-width:600px){ .language-toggle .language-label{ display:none } }
