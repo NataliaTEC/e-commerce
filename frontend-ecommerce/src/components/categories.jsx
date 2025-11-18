@@ -10,21 +10,21 @@ export default function Categories() {
   const navigate = useNavigate()
 
   const categories = [
-    { id: 1, nombre: 'Celulares', icono: new URL('../assets/Categories/phone.svg', import.meta.url).href, ruta: 'Celulares' },
-    { id: 2, nombre: 'Computadoras', icono: new URL('../assets/Categories/laptop.svg', import.meta.url).href, ruta: 'Computadoras' },
-    { id: 3, nombre: 'Parlantes', icono: new URL('../assets/Categories/speaker.svg', import.meta.url).href, ruta: 'Parlantes' },
-    { id: 4, nombre: 'Controles', icono: new URL('../assets/Categories/gamecontroller.svg', import.meta.url).href, ruta: 'Controles' },
-    { id: 5, nombre: 'Cámaras', icono: new URL('../assets/Categories/camera.svg', import.meta.url).href, ruta: 'Cámaras' },
-    { id: 6, nombre: 'Accesorios', icono: new URL('../assets/Categories/accessories.svg', import.meta.url).href, ruta: 'Accesorios' },
-    { id: 7, nombre: 'Smart watch', icono: new URL('../assets/Categories/smartwatch.svg', import.meta.url).href, ruta: 'Smart watch' },
-    { id: 8, nombre: 'Impresoras', icono: new URL('../assets/Categories/printer.svg', import.meta.url).href, ruta: 'Impresoras' },
-    { id: 9, nombre: 'Vigilancia', icono: new URL('../assets/Categories/securitycamera.svg', import.meta.url).href, ruta: 'Vigilancia' },
-    { id: 10, nombre: 'Micrófonos', icono: new URL('../assets/Categories/microphone.svg', import.meta.url).href, ruta: 'Microfonos' },
-    { id: 11, nombre: 'Mouse', icono: new URL('../assets/Categories/mouse.svg', import.meta.url).href, ruta: 'Mouse' },
-    { id: 12, nombre: 'Volantes', icono: new URL('../assets/Categories/gamesteeringwheel.svg', import.meta.url).href, ruta: 'Volantes' },
-    { id: 13, nombre: 'Tv y Video', icono: new URL('../assets/Categories/tv.svg', import.meta.url).href, ruta: 'Tv y Video' },
-    { id: 14, nombre: 'Audifonos', icono: new URL('../assets/Categories/headset.svg', import.meta.url).href, ruta: 'Audifonos' },
-    { id: 15, nombre: 'Teclados', icono: new URL('../assets/Categories/keyboard.svg', import.meta.url).href, ruta: 'Teclados' }
+    { id: 1, nombre: 'Celulares',     slug: 'celulares',     icono: new URL('../assets/Categories/phone.svg', import.meta.url).href },
+    { id: 2, nombre: 'Computadoras',  slug: 'computadoras',  icono: new URL('../assets/Categories/laptop.svg', import.meta.url).href },
+    { id: 3, nombre: 'Parlantes',     slug: 'parlantes',     icono: new URL('../assets/Categories/speaker.svg', import.meta.url).href },
+    { id: 4, nombre: 'Controles',     slug: 'controles',     icono: new URL('../assets/Categories/gamecontroller.svg', import.meta.url).href },
+    { id: 5, nombre: 'Cámaras',       slug: 'camaras',       icono: new URL('../assets/Categories/camera.svg', import.meta.url).href },
+    { id: 6, nombre: 'Accesorios',    slug: 'accesorios',    icono: new URL('../assets/Categories/accessories.svg', import.meta.url).href },
+    { id: 7, nombre: 'Smart watch',   slug: 'smartwatch',    icono: new URL('../assets/Categories/smartwatch.svg', import.meta.url).href },
+    { id: 8, nombre: 'Impresoras',    slug: 'impresoras',    icono: new URL('../assets/Categories/printer.svg', import.meta.url).href },
+    { id: 9, nombre: 'Vigilancia',    slug: 'vigilancia',    icono: new URL('../assets/Categories/securitycamera.svg', import.meta.url).href },
+    { id: 10, nombre: 'Micrófonos',   slug: 'microfonos',    icono: new URL('../assets/Categories/microphone.svg', import.meta.url).href },
+    { id: 11, nombre: 'Mouse',        slug: 'mouse',         icono: new URL('../assets/Categories/mouse.svg', import.meta.url).href },
+    { id: 12, nombre: 'Volantes',     slug: 'volantes',      icono: new URL('../assets/Categories/gamesteeringwheel.svg', import.meta.url).href },
+    { id: 13, nombre: 'Tv y Video',   slug: 'tv-video',      icono: new URL('../assets/Categories/tv.svg', import.meta.url).href },
+    { id: 14, nombre: 'Audifonos',    slug: 'audifonos',     icono: new URL('../assets/Categories/headset.svg', import.meta.url).href },
+    { id: 15, nombre: 'Teclados',     slug: 'teclados',      icono: new URL('../assets/Categories/keyboard.svg', import.meta.url).href }
   ]
 
   const infiniteCategories = [...categories, ...categories, ...categories]
@@ -58,7 +58,6 @@ export default function Categories() {
     const walk = (x - startX.current) * 2
     carousel.scrollLeft = scrollLeft.current - walk
 
-    // Scroll infinito
     const firstSetWidth = carousel.scrollWidth / 3
     const currentScroll = carousel.scrollLeft
 
@@ -105,9 +104,11 @@ export default function Categories() {
     carousel.scrollLeft = firstSetWidth
   }
 
-  const goToCategory = (categoria) => {
-    // navegar a catálogo con query param
-    navigate({ pathname: '/CatalogoProductos', search: `?categoria=${encodeURIComponent(categoria)}` })
+  const goToCategory = (slug) => {
+    navigate({
+      pathname: '/CatalogoProductos',
+      search: `?categoria=${encodeURIComponent(slug)}`
+    })
   }
 
   useEffect(() => {
@@ -121,14 +122,12 @@ export default function Categories() {
       const mousemove = (e) => onDrag(e)
       const dragstart = (e) => e.preventDefault()
 
-      // Mouse events
       carousel.addEventListener('mousedown', mousedown)
       carousel.addEventListener('mouseleave', mouseleave)
       carousel.addEventListener('mouseup', mouseup)
       carousel.addEventListener('mousemove', mousemove)
       carousel.addEventListener('dragstart', dragstart)
 
-      // Touch events
       carousel.addEventListener('touchstart', startDragging, { passive: false })
       carousel.addEventListener('touchend', stopDragging)
       carousel.addEventListener('touchmove', onDrag, { passive: false })
@@ -165,7 +164,11 @@ export default function Categories() {
         <div className="carousel-wrapper">
           <div className="categories-carousel" ref={carouselRef}>
             {infiniteCategories.map((categoria, idx) => (
-              <div key={`${categoria.id}-${idx}`} className="category-card" onClick={() => goToCategory(categoria.ruta)}>
+              <div
+                key={`${categoria.id}-${idx}`}
+                className="category-card"
+                onClick={() => goToCategory(categoria.slug)}
+              >
                 <div className="category-icon">
                   <img src={categoria.icono} alt={categoria.nombre} />
                 </div>

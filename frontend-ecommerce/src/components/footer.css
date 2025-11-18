@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 .site-footer {
   background: #1d1d1f;
   color: #ddd;
@@ -164,7 +166,6 @@
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-rights { text-align: left; }
 }
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 footer {
   background-color: #198b52;

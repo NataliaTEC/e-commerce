@@ -1,0 +1,52 @@
+[
+ {
+  "id": 1,
+  "name": "Laptop Windows 11",
+  "category": "computadoras",
+  "subcategory": "Laptops",
+  "productType": "Laptops",
+  "price": 899.99,
+  "stock": 10,
+  "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/1e7a56ff-3e1f-47f1-838b-2b9ff94fe5a9.png"
+  },
+  {
+    "id": 2,
+    "name": "PC Gaming Ryzen 5 RTX 3060",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 1099.99,
+    "stock": 8,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-ryzen5-rtx3060.png"
+  },
+  {
+    "id": 3,
+    "name": "PC Gaming Intel i5 RTX 3050",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 949.99,
+    "stock": 12,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-i5-rtx3050.png"
+  },
+  {
+    "id": 4,
+    "name": "PC Gaming Ryzen 7 RX 7700 XT",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 1399.99,
+    "stock": 5,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-ryzen7-rx7700xt.png"
+  },
+  {
+    "id": 5,
+    "name": "PC Gaming Compacta GTX 1660 Super",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 799.99,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-compact-gtx1660s.png"
+  }
+]
