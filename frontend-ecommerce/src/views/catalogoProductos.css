@@ -1,35 +1,41 @@
 /* src/views/catalogoProductos.css */
 
 .catalog-page {
+  --accent: #14bab9;
+  --accent-strong: #10a1a0;
+  --bg-page: #f5f5f5;
+  --card-bg: #ffffff;
+  --muted: #777;
+  --text: #222;
+  --dark-surface: #1d1d1f;
+
   width: 100%;
-  min-height: 60vh;            
+  min-height: 60vh;
   margin: 0;
-  padding: 16px 40px 40px;     
+  padding: 16px 40px 40px;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
-  background-color: #262626;   
-  color: #f5f5f5;
+  background-color: var(--bg-page);
+  color: var(--text);
 }
 
 /* Header de la sección */
 .catalog-header {
   margin-bottom: 20px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgba(20,186,185,0.08);
   padding-bottom: 16px;
 }
-
-/* Migas de pan */
 .catalog-breadcrumb {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #bdbdbd;
+  color: var(--muted);
   margin-bottom: 8px;
 }
 
 .catalog-breadcrumb .current {
-  color: #ffffff;
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -49,19 +55,19 @@
 .catalog-title {
   font-size: 1.9rem;
   margin: 0;
-  color: #ffffff; /* más contraste */
+  color: var(--text);
 }
 
 .catalog-subtitle {
   margin: 6px 0 0;
   font-size: 0.98rem;
-  color: #c7c7c7;
+  color: var(--muted);
 }
 
 .catalog-pill {
   font-size: 0.9rem;
   color: #f0f0f0;
-  background-color: #333;
+  background-color: var(--dark-surface);
   border-radius: 999px;
   padding: 6px 14px;
   display: inline-flex;
@@ -71,7 +77,7 @@
 }
 
 .catalog-pill-badge {
-  background-color: #14bab9;  /* color acento del sitio */
+  background-color: var(--accent);  /* color acento del sitio */
   color: #fff;
   padding: 4px 10px;
   border-radius: 999px;
@@ -87,7 +93,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px 0;
-  color: #e0e0e0;
+  color: var(--muted);
   font-size: 0.98rem;
 }
 
@@ -99,8 +105,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 3px solid #555;
-  border-top-color: #14bab9;
+  border: 3px solid rgba(0,0,0,0.12);
+  border-top-color: var(--accent);
   animation: spin 0.7s linear infinite;
   margin-bottom: 10px;
 }
@@ -121,9 +127,9 @@
 }
 
 .product-card {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border-radius: 10px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid rgba(0,0,0,0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -135,9 +141,9 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
-  border-color: rgba(20, 186, 185, 0.55);
+  border-color: rgba(20,186,185,0.14);
 }
 
 .product-image-wrapper {
@@ -162,13 +168,13 @@
 .product-name {
   font-size: 0.98rem;
   margin: 0 0 4px;
-  color: #222;
+  color: var(--text);
   line-height: 1.3;
 }
 
 .product-meta {
   font-size: 0.8rem;
-  color: #777;
+  color: var(--muted);
   margin: 0 0 6px;
   display: flex;
   align-items: center;
@@ -183,7 +189,7 @@
 .product-price {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #198b52; /* tono que ya combina con tu footer */
+  color: var(--accent);
   margin: 0 0 4px;
 }
 
@@ -210,15 +216,15 @@
 }
 
 .product-button.primary {
-  background-color: #14bab9;
+  background-color: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 10px rgba(20, 186, 185, 0.4);
+  box-shadow: 0 4px 10px rgba(20, 186, 185, 0.28);
 }
 
 .product-button.primary:hover {
-  background-color: #10a1a0;
+  background-color: var(--accent-strong);
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(20, 186, 185, 0.55);
+  box-shadow: 0 6px 14px rgba(20, 186, 185, 0.45);
 }
 
 .product-button.ghost {
