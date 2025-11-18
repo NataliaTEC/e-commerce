@@ -22,18 +22,28 @@ export default function CatalogoProductos() {
 
   useEffect(() => {
     setLoading(true)
-    setError('')
 
     fetchProductsByCategory(categoriaSlug.toLowerCase())
-      .then((data) => {
-        setProductos(Array.isArray(data) ? data : [])
+        .then((data) => {
+        if (!Array.isArray(data)) data = []
+
+        const normalized = categoriaSlug.toLowerCase()
+
+        const filtrados = data.filter(p =>
+            p.subcategory?.toLowerCase() === normalized ||
+            p.productType?.toLowerCase() === normalized ||
+            p.category?.toLowerCase() === normalized
+        )
+
+        setProductos(filtrados.length > 0 ? filtrados : data)
         setLoading(false)
-      })
-      .catch(() => {
-        setError('Error al cargar productos')
+        })
+        .catch(() => {
+        setProductos([])
         setLoading(false)
-      })
-  }, [categoriaSlug])
+        })
+    }, [categoriaSlug])
+
 
   return (
     <div className="page-container">

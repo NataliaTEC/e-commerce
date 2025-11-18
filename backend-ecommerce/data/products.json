@@ -17,7 +17,7 @@
     "productType": "Pc gaming",
     "price": 1099.99,
     "stock": 8,
-    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-ryzen5-rtx3060.png"
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489702/0079aa56-5bc7-47b6-b669-491b8842e7dc.png"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "productType": "Pc gaming",
     "price": 949.99,
     "stock": 12,
-    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-i5-rtx3050.png"
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489781/b01bf7aa-dc6d-4ee7-bc42-5f960650f50f.png"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "productType": "Pc gaming",
     "price": 1399.99,
     "stock": 5,
-    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-ryzen7-rx7700xt.png"
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489903/82640c8b-0904-4ab0-8703-9e1d60fa7ab3.png"
   },
   {
     "id": 5,
@@ -47,6 +47,6 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
-    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/pc-gaming-compact-gtx1660s.png"
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   }
 ]

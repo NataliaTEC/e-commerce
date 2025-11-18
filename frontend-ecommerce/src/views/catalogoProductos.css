@@ -1,36 +1,44 @@
 /* src/views/catalogoProductos.css */
 
 .catalog-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px 20px 40px;
+  width: 100%;
+  min-height: 60vh;            
+  margin: 0;
+  padding: 16px 40px 40px;     
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  background-color: #262626;   
+  color: #f5f5f5;
 }
 
+
+/* Header de la sección */
 .catalog-header {
   margin-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #444;
   padding-bottom: 16px;
 }
 
+/* Migas de pan */
 .catalog-breadcrumb {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #777;
+  color: #bdbdbd;
   margin-bottom: 8px;
 }
 
 .catalog-breadcrumb .current {
-  color: #333;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .catalog-breadcrumb .separator {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
+/* Título + pill de categoría */
 .catalog-title-row {
   display: flex;
   align-items: flex-end;
@@ -42,19 +50,19 @@
 .catalog-title {
   font-size: 1.9rem;
   margin: 0;
-  color: #222;
+  color: #ffffff; /* más contraste */
 }
 
 .catalog-subtitle {
   margin: 6px 0 0;
   font-size: 0.98rem;
-  color: #666;
+  color: #c7c7c7;
 }
 
 .catalog-pill {
   font-size: 0.9rem;
-  color: #555;
-  background-color: #f5f5f5;
+  color: #f0f0f0;
+  background-color: #333;
   border-radius: 999px;
   padding: 6px 14px;
   display: inline-flex;
@@ -64,7 +72,7 @@
 }
 
 .catalog-pill-badge {
-  background-color: #14bab9;
+  background-color: #14bab9;  /* color acento del sitio */
   color: #fff;
   padding: 4px 10px;
   border-radius: 999px;
@@ -80,19 +88,19 @@
   align-items: center;
   justify-content: center;
   padding: 40px 0;
-  color: #555;
+  color: #e0e0e0;
   font-size: 0.98rem;
 }
 
 .catalog-error {
-  color: #b71c1c;
+  color: #ff8a80;
 }
 
 .catalog-spinner {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 3px solid #e0e0e0;
+  border: 3px solid #555;
   border-top-color: #14bab9;
   animation: spin 0.7s linear infinite;
   margin-bottom: 10px;
@@ -104,7 +112,7 @@
   }
 }
 
-/* Grid de productos */
+/* Grid de productos (tarjetas en claro para resaltar sobre el fondo oscuro) */
 
 .catalog-grid {
   display: grid;
@@ -127,9 +135,9 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
   transform: translateY(-2px);
-  border-color: rgba(20, 186, 185, 0.4);
+  border-color: rgba(20, 186, 185, 0.55);
 }
 
 .product-image-wrapper {
@@ -175,7 +183,7 @@
 .product-price {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #198b52; /* tono que combina con el footer */
+  color: #198b52; /* tono que ya combina con tu footer */
   margin: 0 0 4px;
 }
 
@@ -204,13 +212,13 @@
 .product-button.primary {
   background-color: #14bab9;
   color: #fff;
-  box-shadow: 0 4px 10px rgba(20, 186, 185, 0.35);
+  box-shadow: 0 4px 10px rgba(20, 186, 185, 0.4);
 }
 
 .product-button.primary:hover {
   background-color: #10a1a0;
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(20, 186, 185, 0.45);
+  box-shadow: 0 6px 14px rgba(20, 186, 185, 0.55);
 }
 
 .product-button.ghost {
