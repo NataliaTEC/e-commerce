@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import searchIcon from '../assets/icons/microfono.svg'
 import cuentaIcon from '../assets/icons/user.svg'
@@ -17,6 +17,7 @@ export default function Header() {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
+  const navigate = useNavigate() 
   const [locale, setLocale] = useState(() => {
     try {
       return localStorage.getItem('locale') || document.documentElement.lang || 'es'
@@ -176,7 +177,14 @@ export default function Header() {
                   className={`mega-cat ${activeCat && activeCat.id === cat.id ? 'active' : ''}`}
                   onMouseEnter={() => setActiveCat(cat)}
                 >
-                  <button className="mega-cat-btn">{cat.name}</button>
+                  <button
+                    className="mega-cat-btn"
+                    onClick={() =>
+                      navigate(`/CatalogoProductos?categoria=${encodeURIComponent(cat.slug.toLowerCase())}`)
+                    }
+                  >
+                    {cat.name}
+                  </button>
                 </div>
               ))}
             </div>
@@ -192,7 +200,11 @@ export default function Header() {
                         if (typeof s === 'string') {
                           return (
                             <div key={i} className="mega-subsection simple">
-                              <Link to={`/catalog?categoria=${encodeURIComponent(s)}`}>{s}</Link>
+                              <Link
+                                to={`/CatalogoProductos?categoria=${encodeURIComponent(s.toLowerCase())}`}
+                              >
+                                {s}
+                              </Link>
                             </div>
                           )
                         }
@@ -203,7 +215,13 @@ export default function Header() {
                               <div className="mega-subsection-title">{s.name}</div>
                               <ul className="mega-subsection-products">
                                 {Array.isArray(s.products) && s.products.map((p, j) => (
-                                  <li key={j}><Link to={`/catalog?categoria=${encodeURIComponent(p)}`}>{p}</Link></li>
+                                  <li key={j}>
+                                    <Link
+                                      to={`/CatalogoProductos?categoria=${encodeURIComponent(p.toLowerCase())}`}
+                                    >
+                                      {p}
+                                    </Link>
+                                  </li>
                                 ))}
                               </ul>
                             </div>

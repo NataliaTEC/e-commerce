@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { fetchProductsByCategory } from '../services/ecommerceApi'
+import { fetchProductsByCategory, fetchProducts } from '../services/ecommerceApi'
 import './catalogoProductos.css'
+
 
 function useQuery() {
   const { search } = useLocation()
@@ -21,27 +22,43 @@ export default function CatalogoProductos() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
+    const normalized = categoriaSlug.toLowerCase()
 
-    fetchProductsByCategory(categoriaSlug.toLowerCase())
-        .then((data) => {
-        if (!Array.isArray(data)) data = []
+    async function cargar() {
+        setLoading(true)
+        setError('')
+        try {
+        let data = await fetchProductsByCategory(normalized)
 
-        const normalized = categoriaSlug.toLowerCase()
+        if (!Array.isArray(data) || data.length === 0) {
+            const todos = await fetchProducts()
 
-        const filtrados = data.filter(p =>
-            p.subcategory?.toLowerCase() === normalized ||
-            p.productType?.toLowerCase() === normalized ||
-            p.category?.toLowerCase() === normalized
-        )
+            const filtrados = todos.filter((p) => {
+            const cat = p.category?.toLowerCase() || ''
+            const sub = p.subcategory?.toLowerCase() || ''
+            const type = p.productType?.toLowerCase() || ''
 
-        setProductos(filtrados.length > 0 ? filtrados : data)
-        setLoading(false)
-        })
-        .catch(() => {
+            return (
+                cat === normalized ||
+                sub === normalized ||
+                type === normalized
+            )
+            })
+
+            data = filtrados
+        }
+
+        setProductos(data)
+        } catch (e) {
+        console.error(e)
+        setError('Error al cargar productos')
         setProductos([])
+        } finally {
         setLoading(false)
-        })
+        }
+    }
+
+    cargar()
     }, [categoriaSlug])
 
 
