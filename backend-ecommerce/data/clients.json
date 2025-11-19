@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "Natalia",
+      "email": "natalia01rg@gmail.com",
+      "password": "1234",
+      "cart": null
+    },
+    {
+      "id": 2,
+      "name": "Tayler",
+      "email": "tayler1203usa@gmail.com",
+      "password": "1234",
+      "cart": null
+    },
+    {
+      "id": 3,
+      "name": "Johnsy",
+      "email": "johnsymusica@gmail.com",
+      "password": "1234",
+      "cart": null
+    }
+]

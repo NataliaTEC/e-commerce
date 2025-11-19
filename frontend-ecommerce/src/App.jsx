@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import PaginaPrincipal from './views/homepage'
 import CatalogoProductos from './views/CatalogoProductos'
+import CarritoProductos from './views/carritoProductos'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/CatalogoProductos" element={<CatalogoProductos />} />
+          <Route path="/carrito" element={<CarritoProductos />} />
           {/* para los links del Header */}
           <Route path="/catalog" element={<CatalogoProductos />} />
         </Routes>

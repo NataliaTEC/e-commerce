@@ -12,9 +12,9 @@ function useQuery() {
   return new URLSearchParams(search)
 }
 
-export default function CatalogoProductos() {
+export default function CarritoProductos() {
   const query = useQuery()
-  // puede venir como "computadoras", "Laptops", etc.
+  // puede venir como "computadoras", "Laptops", etc.A
   const categoriaSlug = query.get('categoria') || 'computadoras'
 
   const [productos, setProductos] = useState([])
@@ -60,26 +60,6 @@ export default function CatalogoProductos() {
 
     cargar()
     }, [categoriaSlug])
-
-
-  const agregarAlCarrito = (productId) => {
-    fetch('http://localhost:3000/api/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ productId })
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        alert(`Producto agregado al carrito`)
-      } else {
-        alert(`Error al agregar el producto al carrito: ${data.error}`)
-      }
-    })
-    .catch((err) => alert(`Error al agregar el producto al carrito: ${err}`))
-  }
 
 
   return (
@@ -168,7 +148,7 @@ export default function CatalogoProductos() {
                       className="product-button primary"
                       onClick={() => {
                         // aquí luego llamas a addToCart(productId)
-                        agregarAlCarrito(p.id)
+                        console.log('Agregar al carrito', p.id)
                       }}
                     >
                       Agregar al carrito
