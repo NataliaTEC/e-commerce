@@ -68,11 +68,12 @@ export default function CatalogoProductos() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ productId })
+      credentials: 'include',
+      body: JSON.stringify({ productId, quantity: 1 })
     })
     .then((res) => res.json())
     .then((data) => {
-      if (data.success) {
+      if (data.ok) {
         alert(`Producto agregado al carrito`)
       } else {
         alert(`Error al agregar el producto al carrito: ${data.error}`)

@@ -18,7 +18,8 @@ export default class ClientRepositoryJSON {
         new Client(
           p.id,
           p.name,
-          p.email
+          p.email,
+          p.password
         )
     )
   }

@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --accent: #14bab9;
+  --accent-dark: #117a76;
+  --accent-opaque: rgba(20,186,185,0.15);
+  --text-primary: #333;
+}
+
+.login-container {
+  margin: 20px 10px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-card {
+  background: white;
+  padding: 40px 35px;
+  width: 620px;
+  border-radius: 18px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.login-card:hover {
+  box-shadow: 0 12px 32px var(--accent-opaque);
+  border-color: var(--accent);
+}
+
+.login-title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* Form */
+.login-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 15px;
+  font-size: 1rem;
+  border: 2px solid #d3d3d3;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.25s ease;
+  background-color: #fbfbfb;
+}
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(20,186,185,0.25);
+  background: white;
+}
+
+.login-btn {
+  padding: 15px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(20,186,185,0.25);
+}
+
+.login-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.login-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 100%;
+    padding: 30px 25px;
+  }
+
+  .login-title {
+    font-size: 1.7rem;
+  }
+}

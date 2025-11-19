@@ -18,12 +18,17 @@ app.use(
     saveUninitialized: true
   })
 );
-app.use(cors());
+app.use(cors(
+  {
+    origin: "http://localhost:5173",
+    credentials: true
+  }
+));
 
 const productRepo = new ProductRepositoryJSON("./data/products.json");
 const clientRepo = new ClientRepositoryJSON("./data/clients.json");
 
-const ecommerceFacade = new ECommerceFacade(productRepo, clientRepo);
+const ecommerceFacade = new ECommerceFacade(productRepo, clientRepo, new Cart(), new PaymentService(), new CartHistory());
 
 function requireFacade(req, res, next) {
   if (!req.session.facade)
@@ -64,7 +69,7 @@ app.post("/api/login", async (req, res) => {
   const user = await clientRepo.findByEmail(req.body.email);
 
   if (!user) return res.status(400).json({ error: "Usuario no encontrado" });
-  if (user.password !== req.body.password)
+  if (!user.verifyPassword(req.body.password))
     return res.status(401).json({ error: "Contraseña incorrecta" });
 
   const cart = new Cart();

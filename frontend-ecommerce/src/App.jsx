@@ -5,6 +5,7 @@ import './App.css'
 import PaginaPrincipal from './views/homepage'
 import CatalogoProductos from './views/CatalogoProductos'
 import CarritoProductos from './views/carritoProductos'
+import LoginPage from './views/loginPage'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<PaginaPrincipal />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/CatalogoProductos" element={<CatalogoProductos />} />
           <Route path="/carrito" element={<CarritoProductos />} />
           {/* para los links del Header */}
