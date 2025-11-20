@@ -209,7 +209,7 @@ form.search-container {
   color: #222;
 }
 .wishlist-list { max-height: 320px; overflow:auto; padding: 8px 0 }
-.wishlist-popup .cart-popup-item img { width: 96px; height: 96px }
+.wishlist-popup .cart-popup-item > img { width: 96px; height: 96px }
 .wishlist-popup .item-name { font-size:0.95rem }
 
 @media (max-width: 900px) {
