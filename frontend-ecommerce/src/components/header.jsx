@@ -11,7 +11,9 @@ import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
-import { fetchCartCount } from '../services/ecommerceApi'
+import { fetchCartCount, fetchCart, addToCart } from '../services/ecommerceApi'
+import closeIcon from '../assets/icons/close.svg'
+import removeIcon from '../assets/icons/remove.svg'
 import VoiceSearchPanel from "./voiceSearchPanel.jsx";
 
 export default function Header() {
@@ -20,6 +22,10 @@ export default function Header() {
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
   const [cartCount, setCartCount] = useState(0)
+  const [cartOpen, setCartOpen] = useState(false)
+  const [cartItems, setCartItems] = useState([])
+  const [cartTotal, setCartTotal] = useState(0)
+  const cartRef = useRef(null)
   const navigate = useNavigate()
   const [voiceOpen, setVoiceOpen] = useState(false)
 
@@ -47,18 +53,25 @@ export default function Header() {
     const observed = headerRef.current
     if (observed) ro.observe(observed)
 
-    const handleClickOutside = (e) => {
-      if (headerRef.current && !headerRef.current.contains(e.target)) {
-        setIsMobileSearchOpen(false)
+      const handleClickOutside = (e) => {
+        if (headerRef.current && !headerRef.current.contains(e.target)) {
+          setIsMobileSearchOpen(false)
+          setCartOpen(false)
+        } else {
+          // If clicked inside header but outside the cart popup, close it
+          if (cartOpen && cartRef.current && !cartRef.current.contains(e.target)) {
+            const btn = headerRef.current.querySelector('.cart-button')
+            if (!btn || !btn.contains(e.target)) setCartOpen(false)
+          }
+        }
       }
-    }
 
     document.addEventListener('click', handleClickOutside)
     return () => {
       document.removeEventListener('click', handleClickOutside)
       if (ro && observed) ro.unobserve(observed)
     }
-  }, [])
+  }, [cartOpen])
 
   useEffect(() => {
     try {
@@ -190,12 +203,116 @@ export default function Header() {
             <span className="icon-badge">0</span>
           </Link>
 
-          <Link to="/carrito" className="cart-button" aria-label="Carrito de compras">
+          <button
+            type="button"
+            className="cart-button"
+            aria-label="Carrito de compras"
+            onClick={async (e) => {
+              e.preventDefault()
+              const next = !cartOpen
+              setCartOpen(next)
+              if (next) {
+                try {
+                  const data = await fetchCart()
+                  setCartItems(data.items || [])
+                  setCartTotal(data.total || 0)
+                } catch {
+                  setCartItems([])
+                  setCartTotal(0)
+                }
+              }
+            }}
+          >
             <span className="icon-circle">
               <img src={cartIcon} alt="Carrito" className="svg-icon cart-icon" />
             </span>
             <span className="icon-badge">{cartCount}</span>
-          </Link>
+          </button>
+
+          {/* Small cart popup */}
+          {cartOpen && (
+            <div ref={cartRef} className="cart-popup" role="dialog" aria-label="Carrito rápido">
+              <div className="cart-popup-header">
+                <strong>Artículo agregado a tu carrito</strong>
+                <button className="cart-popup-close" aria-label="Cerrar" onClick={() => setCartOpen(false)}>
+                  <img src={closeIcon} alt="Cerrar" />
+                </button>
+              </div>
+
+              <div className="cart-popup-list">
+                {cartItems && cartItems.length > 0 ? (
+                  cartItems.slice(0, 5).map((it, i) => {
+                    const product = it.product || it
+                    return (
+                      <div key={i} className="cart-popup-item">
+                        <img src={product.ruta} alt={product.name} />
+                        <div className="item-info">
+                          <div className="item-name">{product.name}</div>
+                          <div className="item-qty">Cantidad: 
+                            <button className="qty-btn" aria-label={`Disminuir ${product.name}`} onClick={async () => {
+                              try {
+                                await addToCart(product.id, -1)
+                                const data = await fetchCart()
+                                setCartItems(data.items || [])
+                                setCartTotal(data.total || 0)
+                                window.dispatchEvent(new Event('cart-updated'))
+                              } catch {
+                                // ignore
+                              }
+                            }}>−</button>
+                            <strong>{it.quantity}</strong>
+                            <button className="qty-btn" aria-label={`Aumentar ${product.name}`} onClick={async () => {
+                              try {
+                                await addToCart(product.id, 1)
+                                const data = await fetchCart()
+                                setCartItems(data.items || [])
+                                setCartTotal(data.total || 0)
+                                window.dispatchEvent(new Event('cart-updated'))
+                              } catch {
+                                // ignore
+                              }
+                            }}>+</button>
+                            <button className="remove-btn" aria-label={`Remover ${product.name}`} onClick={async () => {
+                              try {
+                                await addToCart(product.id, -it.quantity)
+                                const data = await fetchCart()
+                                setCartItems(data.items || [])
+                                setCartTotal(data.total || 0)
+                                window.dispatchEvent(new Event('cart-updated'))
+                              } catch {
+                                // ignore
+                              }
+                            }}>
+                              <img src={removeIcon} alt="Remover" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <div className="cart-popup-empty">No tiene artículos en el carrito.</div>
+                )}
+              </div>
+
+              <div className="cart-popup-subtotal">
+                <div className="subtotal-left">Subtotal</div>
+                <div className="subtotal-right">
+                  <div className="subtotal-value">₡{Number(cartTotal || 0).toLocaleString('es-CR')}</div>
+                  <div className="tax-note">(impuesto incluido)</div>
+                </div>
+              </div>
+
+              <div className="cart-popup-actions">
+                <button className="cart-popup-btn ghost" onClick={() => { setCartOpen(false); navigate('/carrito') }}>
+                  Ver carrito ({cartCount})
+                </button>
+                <button className="cart-popup-btn primary" onClick={() => { setCartOpen(false); navigate('/carrito') }}>
+                  Pagar pedido
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
