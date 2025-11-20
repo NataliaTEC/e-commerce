@@ -25,17 +25,28 @@ app.use(cors(
   }
 ));
 
+const USERS = new Map();
+
 const productRepo = new ProductRepositoryJSON("./data/products.json");
 const clientRepo = new ClientRepositoryJSON("./data/clients.json");
 
-const ecommerceFacade = new ECommerceFacade(productRepo, clientRepo, new Cart(), new PaymentService(), new CartHistory());
+const ecommerceFacade = new ECommerceFacade(productRepo, new Cart(), new PaymentService(), new CartHistory());
 
-function requireFacade(req, res, next) {
-  if (!req.session.facade)
-    return res.status(401).json({ error: "Debes iniciar sesión" });
-  next();
+function getFacade(req) {
+  const id = req.session.userId;
+  if (!id) return null;
+  return USERS.get(id);
 }
 
+function requireFacade(req, res, next) {
+  const id = req.session.userId;
+  if (!id) return res.status(401).json({ error: "Debes iniciar sesión" });
+
+  const facade = USERS.get(id);
+  if (!facade) return res.status(401).json({ error: "Sesión inválida" });
+
+  next();
+}
 
 app.get("/api/products", async (req, res) => {
   try {
@@ -61,8 +72,19 @@ app.get("/api/products/category/:slug", async (req, res) => {
 
 app.post("/api/cart/add", requireFacade, async (req, res) => {
   const { productId, quantity } = req.body;
-  const result = await req.session.facade.agregarAlCarrito(productId, quantity);
-  res.json(result);
+  console.log(USERS);
+  const result = await getFacade(req).agregarAlCarrito(productId, quantity);
+  console.log(result);
+  console.log("despues de agregar al carrito");
+  console.log(USERS);
+  console.log("--------------");
+  console.log(USERS.get(req.session.userId).cart.getItems());
+  res.json({ ok: true, items: result});
+});
+
+app.get("/api/cart/get", requireFacade, async (req, res) => {
+  const items = await getFacade(req).obtenerCarrito();
+  res.json(items);
 });
 
 app.post("/api/login", async (req, res) => {
@@ -77,13 +99,16 @@ app.post("/api/login", async (req, res) => {
   const paymentService = new PaymentService();
   const client = new Client(user.id, user.name, user.email);
 
-  req.session.facade = new ECommerceFacade(
+  const facade = new ECommerceFacade(
     productRepo,
     cart,
     paymentService,
     cartHistory,
     client
   );
+
+  req.session.userId = user.id
+  USERS.set(user.id, facade);
 
   res.json({ ok: true });
 });

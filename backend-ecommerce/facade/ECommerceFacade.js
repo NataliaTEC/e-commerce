@@ -1,5 +1,5 @@
 export default class ECommerceFacade {
-  constructor(productRepo, cart, paymentService, cartHistory) {
+  constructor(productRepo, cart, paymentService, cartHistory, client = null) {
     this.productRepo = productRepo;
     this.cart = cart;
     this.paymentService = paymentService;
@@ -21,9 +21,11 @@ export default class ECommerceFacade {
   async agregarAlCarrito(productId, quantity) {
     const product = await this.productRepo.getById(productId);
     if (!product) throw new Error('Producto no encontrado');
-
+    console.log("aqui1");
     this.cartHistory.save(this.cart.createMemento());
+    console.log("aqui2");
     this.cart.addItem(product, quantity);
+    console.log("aqui3");
     return this.cart.getItems();
   }
 
@@ -59,6 +61,4 @@ export default class ECommerceFacade {
     }
     return resultado;
   }
-
-  
 }

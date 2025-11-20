@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { fetchProductsByCategory, fetchProducts } from '../services/ecommerceApi'
+import { fetchProductsByCategory, fetchProducts, addToCart } from '../services/ecommerceApi'
 import './catalogoProductos.css'
 
 
@@ -63,23 +63,15 @@ export default function CatalogoProductos() {
 
 
   const agregarAlCarrito = (productId) => {
-    fetch('http://localhost:3000/api/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({ productId, quantity: 1 })
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.ok) {
-        alert(`Producto agregado al carrito`)
-      } else {
-        alert(`Error al agregar el producto al carrito: ${data.error}`)
-      }
-    })
-    .catch((err) => alert(`Error al agregar el producto al carrito: ${err}`))
+    addToCart(productId, 1)
+      .then((data) => {
+        if (data.ok) {
+          alert(`Producto agregado al carrito`)
+        } else {
+          alert(`Error al agregar el producto al carrito: ${data.error}`)
+        }
+      })
+      .catch((err) => alert(`Error al agregar el producto al carrito: ${err}`))
   }
 
 

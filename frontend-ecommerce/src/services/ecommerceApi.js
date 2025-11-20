@@ -18,14 +18,16 @@ export async function addToCart(productId, quantity = 1) {
   const res = await fetch(`${API_BASE}/cart/add`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ productId, quantity })
+    body: JSON.stringify({ productId, quantity }),
+    credentials: 'include'
   });
-  if (!res.ok) throw new Error('Error agregando al carrito');
   return await res.json();
 }
 
-export async function getCart() {
-  const res = await fetch(`${API_BASE}/cart`);
+export async function fetchCart() {
+  const res = await fetch(`${API_BASE}/cart/get`, {
+    credentials: 'include'
+  });
   if (!res.ok) throw new Error('Error obteniendo el carrito');
   return await res.json();
 }

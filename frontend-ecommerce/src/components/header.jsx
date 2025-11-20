@@ -134,7 +134,7 @@ export default function Header() {
             <span className="icon-badge">0</span>
           </Link>
 
-          <Link to="/cart" className="cart-button" aria-label="Carrito de compras">
+          <Link to="/carrito" className="cart-button" aria-label="Carrito de compras">
             <span className="icon-circle">
               <img src={cartIcon} alt="Carrito" className="svg-icon cart-icon" />
             </span>
