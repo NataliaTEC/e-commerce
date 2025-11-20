@@ -83,6 +83,17 @@ app.get("/api/products/category/:slug", async (req, res) => {
   }
 });
 
+app.get("/api/products/subcategory/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const productos = await ecommerceFacade.listarProductosPorSubcategoria(slug);
+    res.json(productos);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error al obtener productos por subcategoria" });
+  }
+});
+
 app.post("/api/cart/add", requireFacade, async (req, res) => {
   const { productId, quantity } = req.body;
   const result = await getFacade(req).agregarAlCarrito(productId, quantity);

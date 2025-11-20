@@ -1,0 +1,254 @@
+.product-detail-page {
+  background: #f6f7f9;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+.product-detail-container {
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  padding: 30px 20px;
+}
+
+.product-detail-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 35px;
+  display: flex;
+  gap: 45px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease;
+}
+
+.product-img-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-main-img {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.product-brand {
+  color: #555;
+  font-size: 1rem;
+}
+
+.product-brand .separator {
+  margin: 0 8px;
+  color: #999;
+}
+
+.product-description {
+  margin-top: 15px;
+  color: #444;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.product-price {
+  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #14beb9;
+}
+
+.product-stock {
+  margin-top: 12px;
+  font-size: 1rem;
+}
+.in-stock { color: #16a34a; }
+.out-stock { color: #dc2626; }
+
+.add-cart-btn {
+  margin-top: 28px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  background: #14beb9;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.add-cart-btn:hover {
+  background: #1e40af;
+}
+
+.product-specs {
+  margin-top: 50px;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.product-specs h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: #111;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.spec-card {
+  background: #f3f4f6;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.spec-card h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #111;
+}
+
+.spec-card p {
+  color: #444;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 4px solid #ddd;
+  border-top-color: #14beb9;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  animation: spin 1s linear infinite;
+}
+
+.error-msg {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .product-detail-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .product-main-img {
+    max-width: 300px;
+  }
+}
+
+/* Cantidad */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 14px;
+}
+
+.qty-btn-detail {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background: #e5e7eb;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.qty-btn-detail:hover {
+  background: #d1d5db;
+}
+
+.qty-num {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Wishlist */
+.wishlist-btn-detail {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.wish-icon-detail {
+  width: 28px;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(51%) saturate(914%) hue-rotate(141deg) brightness(90%) contrast(89%);
+  transition: 0.25s;
+}
+
+.wish-icon-detail.active {
+  filter: grayscale(0);
+}
+
+/* Similares */
+.similar-section {
+  margin-top: 50px;
+}
+
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.similar-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.similar-card:hover {
+  transform: translateY(-4px);
+}
+
+.similar-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}

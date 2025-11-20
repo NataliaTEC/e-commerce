@@ -37,12 +37,16 @@ export default class ProductRepositoryJSON {
     return all.filter((p) => p.category === categorySlug);
   }
 
+  async getBySubcategory(subcategorySlug) {
+    const all = await this.getAll();
+    return all.filter((p) => p.subcategory === subcategorySlug);
+  }
+
   async getById(id) {
     const all = await this.getAll();
     return all.find((p) => p.id === id) || null;
   }
 
-  // 🔍 Nuevo: búsqueda por nombre (case-insensitive, por coincidencia parcial)
   async searchByName(term) {
     const all = await this.getAll();
     const normalized = term.trim().toLowerCase();

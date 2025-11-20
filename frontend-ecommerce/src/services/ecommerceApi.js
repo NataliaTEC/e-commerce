@@ -14,6 +14,12 @@ export async function fetchProductsByCategory(categorySlug) {
   return await res.json();
 }
 
+export async function fetchProductsBySubcategory(subcategorySlug) {
+  const res = await fetch(`${API_BASE}/products/subcategory/${subcategorySlug}`);
+  if (!res.ok) throw new Error('Error cargando productos por subcategoría');
+  return await res.json();
+}
+
 export async function fetchProductsBySearch(q) {
   const params = new URLSearchParams();
   if (q) params.append('q', q);

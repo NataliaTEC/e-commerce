@@ -1,6 +1,6 @@
 // src/views/CatalogoProductos.jsx
 import React, { useEffect, useMemo, useState, useRef } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import {
@@ -22,6 +22,7 @@ function useQuery() {
 
 export default function CatalogoProductos() {
   const query = useQuery()
+  const navigate = useNavigate()
 
   const searchText = (query.get('q') || '').trim()
   const categoriaSlug = (query.get('categoria') || '').trim()
@@ -657,7 +658,7 @@ export default function CatalogoProductos() {
                               type="button"
                               className="product-button ghost"
                               onClick={() =>
-                                console.log('Ver detalles', p.id)
+                                navigate(`/detalleProducto/${p.id}`)
                               }
                             >
                               Ver detalles

@@ -7,6 +7,7 @@ import CatalogoProductos from './views/CatalogoProductos'
 import CarritoProductos from './views/carritoProductos'
 import LoginPage from './views/loginPage'
 import SobreNosotros from './views/sobreNosotros'
+import DetalleProducto from './views/detalleProducto'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/CatalogoProductos" element={<CatalogoProductos />} />
           <Route path="/carrito" element={<CarritoProductos />} />
           <Route path="/sobreNosotros" element={<SobreNosotros />} />
+          <Route path="/detalleProducto/:id" element={<DetalleProducto />} />
           {/* para los links del Header */}
           <Route path="/catalog" element={<CatalogoProductos />} />
         </Routes>

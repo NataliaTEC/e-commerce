@@ -18,6 +18,10 @@ export default class ECommerceFacade {
     return await this.productRepo.getByCategory(categorySlug);
   }
 
+  async listarProductosPorSubcategoria(subcategorySlug) {
+    return await this.productRepo.getBySubcategory(subcategorySlug);
+  }
+
   async buscarProductosPorNombre(query) {
     if (!query || !query.trim()) {
       return await this.productRepo.getAll();
