@@ -6,6 +6,7 @@ import PaginaPrincipal from './views/homepage'
 import CatalogoProductos from './views/CatalogoProductos'
 import CarritoProductos from './views/carritoProductos'
 import LoginPage from './views/loginPage'
+import SobreNosotros from './views/sobreNosotros'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/CatalogoProductos" element={<CatalogoProductos />} />
           <Route path="/carrito" element={<CarritoProductos />} />
+          <Route path="/sobreNosotros" element={<SobreNosotros />} />
           {/* para los links del Header */}
           <Route path="/catalog" element={<CatalogoProductos />} />
         </Routes>

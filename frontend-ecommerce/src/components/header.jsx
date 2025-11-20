@@ -420,7 +420,7 @@ export default function Header() {
               <img src={paymentsIcon} alt="Métodos de pago" className="bottom-link-icon" />
               Métodos de pago
             </Link>
-            <Link to="/about">
+            <Link to="/sobreNosotros">
               <img src={aboutIcon} alt="Sobre nosotros" className="bottom-link-icon" />
               Sobre nosotros
             </Link>
