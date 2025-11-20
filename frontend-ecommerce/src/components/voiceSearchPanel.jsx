@@ -58,7 +58,8 @@ export default function VoiceSearchPanel({ onClose, onResult, initialValue = '' 
         if (res.isFinal) finalText += res[0].transcript + ' '
         else interim += res[0].transcript
       }
-      const full = (finalText + interim).trim()
+      const trimmed = (finalText + interim).trim()
+      const full = trimmed.replace('.', ' ')
       setText(full)
     }
 

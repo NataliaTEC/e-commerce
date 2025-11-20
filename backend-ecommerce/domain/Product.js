@@ -1,5 +1,5 @@
 export default class Product {
-  constructor(id, name, category, subcategory, productType, price, stock, ruta) {
+  constructor(id, name, category, subcategory, productType, price, stock, marca, modelo, description, ruta) {
     this.id = id;
     this.name = name;
     this.category = category;      
@@ -7,6 +7,9 @@ export default class Product {
     this.productType = productType;  
     this.price = price;
     this.stock = stock;
+    this.marca = marca;
+    this.modelo = modelo;
+    this.description = description;
     this.ruta = ruta;
   }
 }

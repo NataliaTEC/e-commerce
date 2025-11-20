@@ -1,13 +1,16 @@
 [
- {
-  "id": 1,
-  "name": "Laptop Windows 11",
-  "category": "computadoras",
-  "subcategory": "Laptops",
-  "productType": "Laptops",
-  "price": 899.99,
-  "stock": 10,
-  "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/1e7a56ff-3e1f-47f1-838b-2b9ff94fe5a9.png"
+  {
+    "id": 1,
+    "name": "Laptop Windows 11",
+    "category": "computadoras",
+    "subcategory": "Laptops",
+    "productType": "Laptops",
+    "price": 899.99,
+    "stock": 10,
+    "marca": "Dell",
+    "modelo": "Inspiron 15",
+    "description": "Laptop Dell Inspiron 15 con Windows 11, procesador Intel i5, 8GB RAM, 256GB SSD.",
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763482754/1e7a56ff-3e1f-47f1-838b-2b9ff94fe5a9.png"
   },
   {
     "id": 2,
@@ -17,6 +20,9 @@
     "productType": "Pc gaming",
     "price": 1099.99,
     "stock": 8,
+    "marca": "Asus",
+    "modelo": "ROG Strix",
+    "description": "PC Gaming Asus ROG Strix con Ryzen 5, RTX 3060, 16GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489702/0079aa56-5bc7-47b6-b669-491b8842e7dc.png"
   },
   {
@@ -27,6 +33,9 @@
     "productType": "Pc gaming",
     "price": 949.99,
     "stock": 12,
+    "marca": "Asus",
+    "modelo": "ROG Strix",
+    "description": "PC Gaming Asus ROG Strix con Intel i5, RTX 3050, 16GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489781/b01bf7aa-dc6d-4ee7-bc42-5f960650f50f.png"
   },
   {
@@ -37,6 +46,9 @@
     "productType": "Pc gaming",
     "price": 1399.99,
     "stock": 5,
+    "marca": "Asus",
+    "modelo": "ROG Strix",
+    "description": "PC Gaming Asus ROG Strix con Ryzen 7, RX 7700 XT, 16GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763489903/82640c8b-0904-4ab0-8703-9e1d60fa7ab3.png"
   },
   {
@@ -47,6 +59,9 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
+    "marca": "Asus",
+    "modelo": "ROG Strix Compact",
+    "description": "PC Gaming compacta Asus con Ryzen 5, GTX 1660 Super, 8GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   },
   {
@@ -57,6 +72,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -67,6 +85,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -77,6 +98,9 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
+    "marca": "Asus",
+    "modelo": "ROG Strix Compact",
+    "description": "PC Gaming compacta Asus con Ryzen 5, GTX 1660 Super, 8GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   },
   {
@@ -87,6 +111,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -97,6 +124,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -107,6 +137,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -117,6 +150,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -127,6 +163,9 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
+    "marca": "Asus",
+    "modelo": "ROG Strix Compact",
+    "description": "PC Gaming compacta Asus con Ryzen 5, GTX 1660 Super, 8GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   },
   {
@@ -137,6 +176,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -147,6 +189,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -157,6 +202,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -167,6 +215,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -177,6 +228,9 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
+    "marca": "Asus",
+    "modelo": "ROG Strix Compact",
+    "description": "PC Gaming compacta Asus con Ryzen 5, GTX 1660 Super, 8GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   },
   {
@@ -187,6 +241,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -197,6 +254,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -207,6 +267,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -217,6 +280,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   },
   {
@@ -227,6 +293,9 @@
     "productType": "Pc gaming",
     "price": 799.99,
     "stock": 10,
+    "marca": "Asus",
+    "modelo": "ROG Strix Compact",
+    "description": "PC Gaming compacta Asus con Ryzen 5, GTX 1660 Super, 8GB RAM y 1TB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
   },
   {
@@ -237,6 +306,9 @@
     "productType": "Pc gaming",
     "price": 99.000,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Forge Ryzen 3 4100",
+    "description": "PC Gaming básico Geforce Forge con Ryzen 3 4100, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
   },
   {
@@ -247,6 +319,9 @@
     "productType": "Pc gaming",
     "price": 199.990,
     "stock": 10,
+    "marca": "Geforce",
+    "modelo": "Ryzen Base 5600GT",
+    "description": "PC Gaming Geforce Base con Ryzen 5 5600GT, 8GB RAM y 512GB SSD.",
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   }
 ]

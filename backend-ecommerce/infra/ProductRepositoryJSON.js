@@ -24,6 +24,9 @@ export default class ProductRepositoryJSON {
           p.productType,
           p.price,
           p.stock,
+          p.marca,
+          p.modelo,
+          p.description,
           p.ruta
         )
     );

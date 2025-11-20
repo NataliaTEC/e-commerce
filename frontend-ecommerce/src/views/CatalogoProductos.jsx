@@ -35,7 +35,7 @@ export default function CatalogoProductos() {
   const [error, setError] = useState('')
 
   const [filters, setFilters] = useState({
-    brands: [],
+    marcas: [],
     colors: [],
     minPrice: '',
     maxPrice: '',
@@ -140,7 +140,7 @@ export default function CatalogoProductos() {
   const availableBrands = useMemo(() => {
     const s = new Set()
     productos.forEach((p) => {
-      if (p.brand) s.add(p.brand)
+      if (p.marca) s.add(p.marca)
     })
     return Array.from(s).sort()
   }, [productos])
@@ -168,9 +168,9 @@ export default function CatalogoProductos() {
 
   const filteredProducts = useMemo(() => {
     return productos.filter((p) => {
-      const brandOk =
-        filters.brands.length === 0 ||
-        (p.brand && filters.brands.includes(p.brand))
+      const marcaOk =
+        filters.marcas.length === 0 ||
+        (p.marca && filters.marcas.includes(p.marca))
       const colorOk =
         filters.colors.length === 0 ||
         (p.color && filters.colors.includes(p.color))
@@ -178,7 +178,7 @@ export default function CatalogoProductos() {
       const price = Number(p.price) || 0
       const minOk = !filters.minPrice || Number(filters.minPrice) <= price
       const maxOk = !filters.maxPrice || Number(filters.maxPrice) >= price
-      return brandOk && colorOk && inStockOk && minOk && maxOk
+      return marcaOk && colorOk && inStockOk && minOk && maxOk
     })
   }, [productos, filters])
 
@@ -218,8 +218,10 @@ export default function CatalogoProductos() {
     return sortedProducts.slice(start, start + pageSize)
   }, [sortedProducts, currentPage])
 
-  const goToPage = (n) =>
+  const goToPage = (n) => {
     setCurrentPage(Math.min(Math.max(1, n), totalPages))
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   const prevPage = () => goToPage(currentPage - 1)
   const nextPage = () => goToPage(currentPage + 1)
 
@@ -291,13 +293,13 @@ export default function CatalogoProductos() {
     return trail
   }, [categoriaSlug, isSearchMode, isAllMode])
 
-  const onToggleBrand = (brand) => {
+  const onToggleBrand = (marca) => {
     setFilters((prev) => {
-      const exists = prev.brands.includes(brand)
+      const exists = prev.marcas.includes(marca)
       const nextBrands = exists
-        ? prev.brands.filter((b) => b !== brand)
-        : [...prev.brands, brand]
-      return { ...prev, brands: nextBrands }
+        ? prev.marcas.filter((b) => b !== marca)
+        : [...prev.marcas, marca]
+      return { ...prev, marcas: nextBrands }
     })
   }
 
@@ -313,7 +315,7 @@ export default function CatalogoProductos() {
 
   const resetFilters = () =>
     setFilters({
-      brands: [],
+      marcas: [],
       colors: [],
       minPrice: '',
       maxPrice: '',
@@ -373,7 +375,7 @@ export default function CatalogoProductos() {
                     <label key={b} className="filter-option">
                       <input
                         type="checkbox"
-                        checked={filters.brands.includes(b)}
+                        checked={filters.marcas.includes(b)}
                         onChange={() => onToggleBrand(b)}
                       />
                       <span>{b}</span>
