@@ -134,9 +134,14 @@
 }
 
 .icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 15px auto;
 }
+.icon img { width: 48px; height: 48px; display: block; }
 
 .cta-section {
   background: linear-gradient(135deg, #111827, #1f2937);
@@ -195,4 +200,91 @@
   .cta-section {
     padding: 60px 8%;
   }
+}
+
+/* === Styles for flip service cards (Misión / Visión / Valores) === */
+.service-grid {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card-flip {
+  perspective: 1100px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(.2,.9,.3,1);
+  border-radius: 16px;
+}
+
+.service-card-flip .card-front,
+.service-card-flip .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.service-card-flip .card-front {
+  transform: rotateY(0deg);
+}
+
+.service-card-flip .card-back {
+  transform: rotateY(180deg);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+}
+
+.service-card-flip.flipped .card-inner { transform: rotateY(180deg); }
+
+.image-container { position: relative; width: 100%; height: 100%; }
+.card-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.image-overlay {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.2));
+  text-align: center;
+  padding: 18px;
+}
+
+.service-icon { width: 68px; height: 68px; border-radius: 999px; background: rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
+.svg-icon { width: 32px; height: 32px; display:block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.18)); }
+
+.image-overlay h3 { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.flip-hint { font-size: 0.85rem; opacity: 0.95; }
+
+.card-back-content { text-align: center; }
+.card-back-content .service-icon { margin: 0 auto 12px; background: var(--accent); }
+.card-back-content h3 { margin: 6px 0 10px; color: var(--text); }
+.service-details { list-style: none; padding: 0; margin: 0 0 12px; color: #4b5563; }
+.service-details li { margin: 8px 0; }
+.card-link { display:inline-block; padding:8px 14px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
+
+@media (max-width: 1000px) {
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .card-inner { min-height: 220px; }
 }
