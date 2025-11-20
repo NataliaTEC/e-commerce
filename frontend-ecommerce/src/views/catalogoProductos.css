@@ -236,6 +236,83 @@
   background-color: #e9e9e9;
 }
 
+.animated-grid {
+  animation: fadeInGrid 0.4s ease-out;
+}
+
+.animated-card {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardFadeIn 0.4s ease-out forwards;
+  animation-delay: calc(0.03s * var(--card-index, 0));
+}
+
+.animated-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.animated-card .product-image-wrapper {
+  overflow: hidden;
+}
+
+.animated-card .product-image {
+  transition: transform 0.3s ease;
+}
+
+.animated-card:hover .product-image {
+  transform: scale(1.04);
+}
+
+.product-button.primary,
+.product-button.ghost {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.product-button.primary:hover,
+.product-button.ghost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* opcional: suavizar el loader si usas .catalog-spinner como círculo */
+.catalog-spinner {
+  animation: spinnerRotate 0.8s linear infinite;
+}
+
+@keyframes spinnerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
 /* Responsivo */
 
 @media (max-width: 1024px) {

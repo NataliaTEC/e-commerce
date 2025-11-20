@@ -1,3 +1,4 @@
+// frontend-ecommerce\src\services\ecommerceApi.js
 const API_BASE = 'http://localhost:3000/api';
 
 // Productos
@@ -10,6 +11,18 @@ export async function fetchProducts() {
 export async function fetchProductsByCategory(categorySlug) {
   const res = await fetch(`${API_BASE}/products/category/${categorySlug}`);
   if (!res.ok) throw new Error('Error cargando productos por categoría');
+  return await res.json();
+}
+
+// 🔍 Búsqueda por nombre
+export async function fetchProductsBySearch(q) {
+  const params = new URLSearchParams();
+  if (q) params.append('q', q);
+
+  const res = await fetch(`${API_BASE}/products?${params.toString()}`);
+  if (!res.ok) {
+    throw new Error('Error al buscar productos');
+  }
   return await res.json();
 }
 

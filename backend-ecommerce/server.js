@@ -50,15 +50,28 @@ function requireFacade(req, res, next) {
 
 app.get("/api/products", async (req, res) => {
   try {
+    console.log('Query de búsqueda:', req.query);
+    const { q } = req.query;
     const productos = await ecommerceFacade.listarProductos();
-    res.json(productos);
+
+    if (!q || !q.trim()) {
+      return res.json(productos);
+    }
+
+    const term = q.trim().toLowerCase();
+
+    const filtrados = productos.filter((p) => {
+      if (!p || typeof p.name !== "string") return false;
+      return p.name.toLowerCase().includes(term);
+    });
+
+    return res.json(filtrados);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error al obtener productos" });
   }
 });
 
-// Productos por categoría
 app.get("/api/products/category/:slug", async (req, res) => {
   try {
     const { slug } = req.params;

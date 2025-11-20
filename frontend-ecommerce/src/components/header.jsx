@@ -11,13 +11,20 @@ import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
+import VoiceSearchPanel from "./voiceSearchPanel.jsx";
 
 export default function Header() {
   const headerRef = useRef(null)
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
+  const [voiceOpen, setVoiceOpen] = useState(false)
+
+
+  // 🔍 texto de búsqueda (desktop y mobile)
+  const [searchTerm, setSearchTerm] = useState('')
+
   const [locale, setLocale] = useState(() => {
     try {
       return localStorage.getItem('locale') || document.documentElement.lang || 'es'
@@ -64,6 +71,20 @@ export default function Header() {
     }
   }, [locale])
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+
+    const query = searchTerm.trim()
+
+    if (!query) {
+      navigate('/CatalogoProductos')
+    } else {
+      navigate(`/CatalogoProductos?q=${encodeURIComponent(query)}`)
+    }
+
+    setIsMobileSearchOpen(false)
+  }
+
   return (
     <div className="header-navigation-container" ref={headerRef}>
       <header className="app-header">
@@ -88,21 +109,35 @@ export default function Header() {
           </Link>
         </div>
 
+        {/* 🔍 Búsqueda desktop */}
         <form
           className="search-container"
-          onSubmit={(e) => {
-            e.preventDefault()
-            // Implementar búsqueda si lo desea
-          }}
+          onSubmit={handleSearchSubmit}
         >
-          <input type="text" className="search-input" placeholder="Búsqueda" />
-          <button type="submit" className="search-button" aria-label="Buscar">
-            <img src={searchIcon} alt="Buscar" className="svg-icon search-icon" />
-          </button>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Búsqueda"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+            <button
+              type="button"
+              className="search-button"
+              aria-label="Buscar por voz"
+              onClick={() => setVoiceOpen(true)}
+            >
+              <img src={searchIcon} alt="Buscar por voz" className="svg-icon search-icon" />
+            </button>
+
         </form>
 
         <div className="header-icons">
-          <button className="search-button-mobile" aria-label="Buscar" onClick={() => setIsMobileSearchOpen((s) => !s)}>
+          <button
+            className="search-button-mobile"
+            aria-label="Buscar"
+            onClick={() => setIsMobileSearchOpen((s) => !s)}
+          >
             <img src={searchIcon} alt="Buscar" className="svg-icon mobile-search-icon" />
           </button>
           
@@ -110,7 +145,11 @@ export default function Header() {
             type="button"
             className="user-button language-toggle"
             aria-label="Cambiar idioma"
-            onClick={() => setLocale((prev) => (prev && String(prev).toLowerCase().startsWith('en') ? 'es' : 'en'))}
+            onClick={() =>
+              setLocale((prev) =>
+                prev && String(prev).toLowerCase().startsWith('en') ? 'es' : 'en'
+              )
+            }
           >
             <span className="icon-circle">
               <img src={LangIcon} alt="Lenguaje" className="svg-icon user-icon" />
@@ -161,9 +200,18 @@ export default function Header() {
             <span className="all-cats-label">Todas las categorías</span>
           </div>
           <div className="bottom-links">
-            <Link to="/stores"><img src={storesIcon} alt="Nuestras Tiendas" className="bottom-link-icon"/>Nuestras tiendas</Link>
-            <Link to="/payments"><img src={paymentsIcon} alt="Métodos de pago" className="bottom-link-icon"/>Métodos de pago</Link>
-            <Link to="/about"><img src={aboutIcon} alt="Sobre nosotros" className="bottom-link-icon"/>Sobre nosotros</Link>
+            <Link to="/stores">
+              <img src={storesIcon} alt="Nuestras Tiendas" className="bottom-link-icon" />
+              Nuestras tiendas
+            </Link>
+            <Link to="/payments">
+              <img src={paymentsIcon} alt="Métodos de pago" className="bottom-link-icon" />
+              Métodos de pago
+            </Link>
+            <Link to="/about">
+              <img src={aboutIcon} alt="Sobre nosotros" className="bottom-link-icon" />
+              Sobre nosotros
+            </Link>
           </div>
         </div>
 
@@ -180,7 +228,11 @@ export default function Header() {
                   <button
                     className="mega-cat-btn"
                     onClick={() =>
-                      navigate(`/CatalogoProductos?categoria=${encodeURIComponent(cat.slug.toLowerCase())}`)
+                      navigate(
+                        `/CatalogoProductos?categoria=${encodeURIComponent(
+                          cat.slug.toLowerCase()
+                        )}`
+                      )
                     }
                   >
                     {cat.name}
@@ -201,7 +253,9 @@ export default function Header() {
                           return (
                             <div key={i} className="mega-subsection simple">
                               <Link
-                                to={`/CatalogoProductos?categoria=${encodeURIComponent(s.toLowerCase())}`}
+                                to={`/CatalogoProductos?categoria=${encodeURIComponent(
+                                  s.toLowerCase()
+                                )}`}
                               >
                                 {s}
                               </Link>
@@ -214,15 +268,18 @@ export default function Header() {
                             <div key={i} className="mega-subsection">
                               <div className="mega-subsection-title">{s.name}</div>
                               <ul className="mega-subsection-products">
-                                {Array.isArray(s.products) && s.products.map((p, j) => (
-                                  <li key={j}>
-                                    <Link
-                                      to={`/CatalogoProductos?categoria=${encodeURIComponent(p.toLowerCase())}`}
-                                    >
-                                      {p}
-                                    </Link>
-                                  </li>
-                                ))}
+                                {Array.isArray(s.products) &&
+                                  s.products.map((p, j) => (
+                                    <li key={j}>
+                                      <Link
+                                        to={`/CatalogoProductos?categoria=${encodeURIComponent(
+                                          p.toLowerCase()
+                                        )}`}
+                                      >
+                                        {p}
+                                      </Link>
+                                    </li>
+                                  ))}
                               </ul>
                             </div>
                           )
@@ -236,23 +293,48 @@ export default function Header() {
                   </div>
                 </div>
               ) : (
-                <div className="mega-panel"><p>Seleccione una categoría</p></div>
+                <div className="mega-panel">
+                  <p>Seleccione una categoría</p>
+                </div>
               )}
             </div>
           </div>
         </div>
       </nav>
 
-
+      {/* 🔍 Búsqueda móvil */}
       {isMobileSearchOpen && (
         <div className="mobile-search-overlay">
-          <form className="mobile-search-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="text" className="search-input" placeholder="Buscar Productos" />
+          <form
+            className="mobile-search-form"
+            onSubmit={handleSearchSubmit}
+          >
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Buscar Productos"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <button type="submit" className="search-button" aria-label="Buscar">
               Buscar
             </button>
           </form>
         </div>
+      )}
+      {/* 🎤 Panel de búsqueda por voz */}
+      {voiceOpen && (
+        <VoiceSearchPanel
+          initialValue={searchTerm}
+          onClose={() => setVoiceOpen(false)}
+          onResult={(value) => {
+            const q = value.trim()
+            setVoiceOpen(false)
+            if (!q) return
+            setSearchTerm(q)
+            navigate(`/CatalogoProductos?q=${encodeURIComponent(q)}`)
+          }}
+        />
       )}
     </div>
   )

@@ -18,6 +18,14 @@ export default class ECommerceFacade {
     return await this.productRepo.getByCategory(categorySlug);
   }
 
+  // 🔍 Nuevo: buscar por nombre
+  async buscarProductosPorNombre(query) {
+    if (!query || !query.trim()) {
+      return await this.productRepo.getAll();
+    }
+    return await this.productRepo.searchByName(query);
+  }
+
   async agregarAlCarrito(productId, quantity) {
     const product = await this.productRepo.getById(productId);
     if (!product) throw new Error('Producto no encontrado');
