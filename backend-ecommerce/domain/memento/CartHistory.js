@@ -5,13 +5,13 @@ export default class CartHistory {
     this.stack = [];
   }
 
-  save(state) {
-    this.stack.push(new CartMemento(state));
+  save(memento) {
+    this.stack.push(memento);
   }
 
   getLast() {
     if (this.stack.length === 0) return null;
     const memento = this.stack.pop();
-    return memento.getState();
+    return memento;
   }
 }

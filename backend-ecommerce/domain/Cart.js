@@ -1,3 +1,5 @@
+import CartMemento from "./memento/CartMemento.js";
+
 export default class Cart {
   constructor() {
     this.items = [];
@@ -25,17 +27,16 @@ export default class Cart {
   }
 
   createMemento() {
-    // clonar el estado actual
-    return {
-      items: this.items.map(i => ({
+    return new CartMemento(
+      this.items.map(i => ({
         product: { ...i.product },
         quantity: i.quantity
       }))
-    };
+    );
   }
 
   restore(memento) {
-    this.items = memento.items.map(i => ({
+    this.items = memento.getState().map(i => ({
       product: { ...i.product },
       quantity: i.quantity
     }));

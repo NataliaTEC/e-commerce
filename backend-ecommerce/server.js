@@ -40,10 +40,10 @@ function getFacade(req) {
 
 function requireFacade(req, res, next) {
   const id = req.session.userId;
-  if (!id) return res.status(401).json({ error: "Debes iniciar sesión" });
+  if (!id) return res.status(401).json({ error: "Debes iniciar sesión", redirect: "/login" });
 
   const facade = USERS.get(id);
-  if (!facade) return res.status(401).json({ error: "Sesión inválida" });
+  if (!facade) return res.status(401).json({ error: "Sesión inválida", redirect: "/login" });
 
   next();
 }
@@ -85,19 +85,34 @@ app.get("/api/products/category/:slug", async (req, res) => {
 
 app.post("/api/cart/add", requireFacade, async (req, res) => {
   const { productId, quantity } = req.body;
-  console.log(USERS);
+  
+  const snapshot = getFacade(req).cart.createMemento();
+  getFacade(req).cartHistory.save(snapshot);
+
   const result = await getFacade(req).agregarAlCarrito(productId, quantity);
-  console.log(result);
-  console.log("despues de agregar al carrito");
-  console.log(USERS);
-  console.log("--------------");
-  console.log(USERS.get(req.session.userId).cart.getItems());
+
   res.json({ ok: true, items: result});
+});
+
+app.post("/api/cart/undo", requireFacade, async (req, res) => {
+  const memento = getFacade(req).cartHistory.getLast();
+  if (!memento) {
+    return res.status(400).json({ error: "No hay cambios para deshacer" });
+  }
+  getFacade(req).cart.restore(memento);
+
+  const items = await getFacade(req).obtenerCarrito();
+  res.json({ ok: true, items: items });
 });
 
 app.get("/api/cart/get", requireFacade, async (req, res) => {
   const items = await getFacade(req).obtenerCarrito();
   res.json(items);
+});
+
+app.post("/api/cart/clear", requireFacade, async (req, res) => {
+  getFacade(req).vaciarCarrito();
+  res.json({ ok: true, items: [] });
 });
 
 app.post("/api/login", async (req, res) => {

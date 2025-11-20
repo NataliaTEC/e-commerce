@@ -11,6 +11,7 @@ import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
+import { fetchCartCount } from '../services/ecommerceApi'
 import VoiceSearchPanel from "./voiceSearchPanel.jsx";
 
 export default function Header() {
@@ -18,6 +19,7 @@ export default function Header() {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
+  const [cartCount, setCartCount] = useState(0)
   const navigate = useNavigate()
   const [voiceOpen, setVoiceOpen] = useState(false)
 
@@ -84,6 +86,21 @@ export default function Header() {
 
     setIsMobileSearchOpen(false)
   }
+
+  useEffect(() => {
+    fetchCartCount().then(setCartCount).catch(() => setCartCount(0))
+  }, [])
+
+  useEffect(() => {
+    fetchCartCount().then(setCartCount).catch(() => setCartCount(0));
+
+    function handleUpdate() {
+      fetchCartCount().then(setCartCount).catch(() => setCartCount(0));
+    }
+
+    window.addEventListener("cart-updated", handleUpdate);
+    return () => window.removeEventListener("cart-updated", handleUpdate);
+  }, []);
 
   return (
     <div className="header-navigation-container" ref={headerRef}>
@@ -177,7 +194,7 @@ export default function Header() {
             <span className="icon-circle">
               <img src={cartIcon} alt="Carrito" className="svg-icon cart-icon" />
             </span>
-            <span className="icon-badge">0</span>
+            <span className="icon-badge">{cartCount}</span>
           </Link>
         </div>
       </header>

@@ -1,34 +1,60 @@
 // src/views/CarritoProductos.jsx
 import React, { useEffect, useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { fetchCart } from "../services/ecommerceApi";
 import "./carritoProductos.css";
 
 export default function CarritoProductos() {
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    async function cargarCarrito() {
-      try {
-        setLoading(true);
-        const data = await fetchCart();
-        console.log("Carrito cargado:", data);
-        setItems(data.items || []);
-        setTotal(data.total || 0);
-      } catch (err) {
-        console.error(err);
-        setError("Error al cargar el carrito");
-      } finally {
-        setLoading(false);
+  async function cargarCarrito() {
+    try {
+      setLoading(true);
+      const data = await fetchCart();
+      setItems(data.items || []);
+      setTotal(data.total || 0);
+    } catch (err) {
+      console.error(err);
+      if (err.redirect) {
+        navigate(err.redirect);
+        return;
       }
+        
+      setError("Error al cargar el carrito");
+    } finally {
+      setLoading(false);
     }
+  }
 
+  useEffect(() => {
     cargarCarrito();
   }, []);
+
+  async function undoCart() {
+    const res = await fetch("http://localhost:3000/api/cart/undo", {
+      method: "POST",
+      credentials: "include"
+    });
+    const data = await res.json();
+    if (data.ok) cargarCarrito();
+    window.dispatchEvent(new Event("cart-updated"));
+  }
+
+  async function clearCart() {
+    const res = await fetch("http://localhost:3000/api/cart/clear", {
+      method: "POST",
+      credentials: "include"
+    });
+    const data = await res.json();
+    if (data.ok) cargarCarrito();
+    window.dispatchEvent(new Event("cart-updated"));
+  }
 
   return (
     <div className="page-container">
@@ -44,10 +70,21 @@ export default function CarritoProductos() {
               <span className="current">Carrito</span>
             </div>
 
-            <h1 className="catalog-title">Tu carrito</h1>
+            <div className="cart-header-row">
+              <h1 className="catalog-title">Tu carrito</h1>
+
+              <div className="cart-actions">
+                <button className="cart-btn ghost" onClick={undoCart}>
+                  Deshacer
+                </button>
+
+                <button className="cart-btn danger" onClick={clearCart}>
+                  Vaciar
+                </button>
+              </div>
+            </div>
           </header>
 
-          {/* Cargando */}
           {loading && (
             <div className="catalog-state">
               <div className="catalog-spinner" />
@@ -55,12 +92,10 @@ export default function CarritoProductos() {
             </div>
           )}
 
-          {/* Error */}
           {!loading && error && (
             <div className="catalog-state catalog-error">{error}</div>
           )}
 
-          {/* Vacío */}
           {!loading && !error && items.length === 0 && (
             <div className="catalog-state">Tu carrito está vacío.</div>
           )}

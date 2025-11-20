@@ -78,6 +78,9 @@ export default function CatalogoProductos() {
         else alert(`Error al agregar el producto al carrito: ${data.error}`)
       })
       .catch((err) => alert(`Error al agregar el producto al carrito: ${err}`))
+      .finally(() => {
+        window.dispatchEvent(new Event('cart-updated'))
+      })
   }
 
   let titulo = ''

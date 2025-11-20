@@ -41,13 +41,13 @@ export async function fetchCart() {
   const res = await fetch(`${API_BASE}/cart/get`, {
     credentials: 'include'
   });
-  if (!res.ok) throw new Error('Error obteniendo el carrito');
   return await res.json();
 }
 
 export async function undoCartChange() {
   const res = await fetch(`${API_BASE}/cart/undo`, {
-    method: 'POST'
+    method: 'POST',
+    credentials: 'include'
   });
   if (!res.ok) throw new Error('Error deshaciendo el último cambio del carrito');
   return await res.json();
@@ -55,10 +55,16 @@ export async function undoCartChange() {
 
 export async function clearCart() {
   const res = await fetch(`${API_BASE}/cart/clear`, {
-    method: 'POST'
+    method: 'POST',
+    credentials: 'include'
   });
   if (!res.ok) throw new Error('Error vaciando el carrito');
   return await res.json();
+}
+
+export async function fetchCartCount() {
+  const cart = await fetchCart();
+  return cart.items ? cart.items.reduce((sum, item) => sum + item.quantity, 0) : 0;
 }
 
 // Pagos
