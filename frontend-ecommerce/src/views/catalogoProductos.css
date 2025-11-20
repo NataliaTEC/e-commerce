@@ -3,6 +3,8 @@
 .catalog-page {
   --accent: #14bab9;
   --accent-strong: #10a1a0;
+  --accent-light: #3ec6c5;
+  /* Lighter accent variant used for wishlist active state to keep contrast with white heart */
   --bg-page: #f5f5f5;
   --card-bg: #ffffff;
   --muted: #777;
@@ -360,6 +362,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative; /* for wishlist overlay */
 }
 
 .product-image {
@@ -368,6 +372,39 @@
   object-fit: contain;
   mix-blend-mode: multiply;
 }
+
+.product-wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #fff; /* white like card */
+  border: 1px solid rgba(0,0,0,0.06);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 120ms ease;
+  color: var(--accent); /* inline SVG stroke inherits this */
+}
+.product-wishlist-btn img { width:20px; height:20px; display:block }
+.product-wishlist-btn:hover { transform: translateY(-2px); background: rgba(20,186,185,0.06) }
+.product-wishlist-btn:active { background: var(--accent-light); color: #fff }
+.product-wishlist-btn.active { background: var(--accent-light); color: #fff }
+.product-wishlist-btn.active img { filter: none }
+/* animate when toggled on */
+.product-wishlist-btn.active { animation: wishPop 220ms cubic-bezier(.2,.9,.3,1); }
+
+/* Tooltip removed by user request */
+
+/* pop animation */
+.product-wishlist-btn.pop { animation: wishPop 220ms cubic-bezier(.2,.9,.3,1); }
+@keyframes wishPop { 0%{ transform: scale(0.88);} 60%{ transform: scale(1.12);} 100%{ transform: scale(1);} }
 
 .product-body {
   padding: 10px 12px 4px;

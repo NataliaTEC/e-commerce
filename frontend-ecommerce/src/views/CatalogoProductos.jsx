@@ -12,6 +12,8 @@ import {
 import './catalogoProductos.css'
 import categories from '../data/categories'
 import downArrow from '../assets/icons/down-arrow.svg'
+import WishFill from '../assets/icons/heart.svg'
+import { toggleWishlist, isInWishlist, getWishlist } from '../services/wishlistService'
 
 function useQuery() {
   const { search } = useLocation()
@@ -102,6 +104,14 @@ export default function CatalogoProductos() {
         window.dispatchEvent(new Event('cart-updated'))
       })
   }
+
+  const [, setWishlist] = useState(() => getWishlist())
+
+  useEffect(() => {
+    const handler = () => setWishlist(getWishlist())
+    window.addEventListener('wishlist-updated', handler)
+    return () => window.removeEventListener('wishlist-updated', handler)
+  }, [])
 
   // --- Títulos y pill según modo (de tu compañero, adaptado) ---
   let titulo = ''
@@ -591,6 +601,23 @@ export default function CatalogoProductos() {
                           style={{ '--card-index': index }}
                         >
                           <div className="product-image-wrapper">
+                            <button
+                              type="button"
+                              className={`product-wishlist-btn ${isInWishlist(p) ? 'active' : ''}`}
+                              aria-label={isInWishlist(p) ? 'Eliminar de favoritos' : 'Agregar a favoritos'}
+                              aria-pressed={isInWishlist(p) ? "true" : "false"}
+                              onClick={() => toggleWishlist(p)}
+                            >
+                              {isInWishlist(p) ? (
+                                <img src={WishFill} alt="Corazón" />
+                              ) : (
+                                /* inline SVG uses currentColor so we can control it from CSS */
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="outline-heart" aria-hidden="true">
+                                  <path d="M12 6C10.2 3.9 7.19 3.25 4.94 5.17 2.69 7.09 2.37 10.31 4.14 12.58 5.61 14.47 10.06 18.45 11.52 19.73 11.69 19.88 11.77 19.95 11.86 19.98 11.95 20.01 12.04 20.01 12.12 19.98 12.22 19.95 12.3 19.88 12.46 19.74 13.92 18.45 18.37 14.47 19.85 12.58 21.62 10.31 21.34 7.08 19.05 5.18 16.76 3.28 13.8 3.9 12 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                              {/* Tooltip removed per user preference */}
+                            </button>
                             <img
                               src={p.ruta}
                               alt={p.name}

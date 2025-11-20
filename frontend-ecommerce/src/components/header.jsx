@@ -12,6 +12,8 @@ import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
 import { fetchCartCount, fetchCart, addToCart } from '../services/ecommerceApi'
+import { getWishlist, removeFromWishlist, wishlistCount } from '../services/wishlistService'
+// heart fill icon intentionally not used in header to keep compact interface
 import closeIcon from '../assets/icons/close.svg'
 import removeIcon from '../assets/icons/remove.svg'
 import VoiceSearchPanel from "./voiceSearchPanel.jsx";
@@ -22,10 +24,15 @@ export default function Header() {
   const [megaOpen, setMegaOpen] = useState(false)
   const [activeCat, setActiveCat] = useState(categories[0] || null)
   const [cartCount, setCartCount] = useState(0)
+  const [wishlistCountState, setWishlistCountState] = useState(() => wishlistCount())
   const [cartOpen, setCartOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
   const [cartTotal, setCartTotal] = useState(0)
   const cartRef = useRef(null)
+  const wishlistBtnRef = useRef(null)
+  const wishlistPopupRef = useRef(null)
+  const [wishlistOpen, setWishlistOpen] = useState(false)
+  const [wishlistItems, setWishlistItems] = useState([])
   const navigate = useNavigate()
   const [voiceOpen, setVoiceOpen] = useState(false)
 
@@ -57,11 +64,16 @@ export default function Header() {
         if (headerRef.current && !headerRef.current.contains(e.target)) {
           setIsMobileSearchOpen(false)
           setCartOpen(false)
+          setWishlistOpen(false)
         } else {
           // If clicked inside header but outside the cart popup, close it
           if (cartOpen && cartRef.current && !cartRef.current.contains(e.target)) {
             const btn = headerRef.current.querySelector('.cart-button')
             if (!btn || !btn.contains(e.target)) setCartOpen(false)
+          }
+          if (wishlistOpen && wishlistPopupRef.current && !wishlistPopupRef.current.contains(e.target)) {
+            const btn = headerRef.current.querySelector('.wishlist-button')
+            if (!btn || !btn.contains(e.target)) setWishlistOpen(false)
           }
         }
       }
@@ -71,7 +83,7 @@ export default function Header() {
       document.removeEventListener('click', handleClickOutside)
       if (ro && observed) ro.unobserve(observed)
     }
-  }, [cartOpen])
+  }, [cartOpen, wishlistOpen])
 
   useEffect(() => {
     try {
@@ -114,6 +126,17 @@ export default function Header() {
     window.addEventListener("cart-updated", handleUpdate);
     return () => window.removeEventListener("cart-updated", handleUpdate);
   }, []);
+
+  useEffect(() => {
+    const refresh = () => {
+      setWishlistCountState(wishlistCount())
+      if (wishlistOpen) setWishlistItems(getWishlist())
+    }
+    // initialize
+    refresh()
+    window.addEventListener('wishlist-updated', refresh)
+    return () => window.removeEventListener('wishlist-updated', refresh)
+  }, [wishlistOpen])
 
   return (
     <div className="header-navigation-container" ref={headerRef}>
@@ -196,12 +219,26 @@ export default function Header() {
             </span>
           </Link>
 
-          <Link to="/wishlist" className="wishlist-button" aria-label="Wishlist">
+          <button
+            type="button"
+            className={`wishlist-button icon-button`}
+            aria-label="Wishlist"
+            aria-expanded={wishlistOpen}
+            onClick={async (e) => {
+              e.preventDefault()
+              const next = !wishlistOpen
+              setWishlistOpen(next)
+              if (next) {
+                setWishlistItems(getWishlist())
+              }
+            }}
+            ref={wishlistBtnRef}
+          >
             <span className="icon-circle">
               <img src={WishIcon} alt="Wishlist" className="svg-icon wish-icon" />
             </span>
-            <span className="icon-badge">0</span>
-          </Link>
+            <span className="icon-badge">{wishlistCountState || 0}</span>
+          </button>
 
           <button
             type="button"
@@ -310,6 +347,47 @@ export default function Header() {
                 <button className="cart-popup-btn primary" onClick={() => { setCartOpen(false); navigate('/carrito') }}>
                   Pagar pedido
                 </button>
+              </div>
+            </div>
+          )}
+
+          {/* Wishlist popup (similar to cart, but longer and no buttons) */}
+          {wishlistOpen && (
+            <div ref={wishlistPopupRef} className="wishlist-popup" role="dialog" aria-label="Wishlist rápida">
+              <div className="cart-popup-header">
+                <strong>Favoritos</strong>
+                <button className="cart-popup-close" aria-label="Cerrar" onClick={() => setWishlistOpen(false)}>
+                  <img src={closeIcon} alt="Cerrar" />
+                </button>
+              </div>
+
+              <div className="cart-popup-list wishlist-list">
+                {wishlistItems && wishlistItems.length > 0 ? (
+                  wishlistItems.map((product, i) => (
+                    <div key={product.id || i} className="cart-popup-item">
+                      <img src={product.ruta} alt={product.name} />
+                      <div className="item-info">
+                        <div className="item-name">{product.name}</div>
+                        <div className="item-qty">
+                          <span className="muted">{product.subcategory || ''}</span>
+                          <button
+                            className="remove-btn"
+                            aria-label={`Eliminar ${product.name} de favoritos`}
+                            onClick={() => {
+                              removeFromWishlist(product.id)
+                              setWishlistItems(getWishlist())
+                              setWishlistCountState(wishlistCount())
+                            }}
+                          >
+                            <img src={removeIcon} alt="Eliminar" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="cart-popup-empty">No hay favoritos aún.</div>
+                )}
               </div>
             </div>
           )}
