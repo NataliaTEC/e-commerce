@@ -48,5 +48,205 @@
     "price": 799.99,
     "stock": 10,
     "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
+  },
+  {
+    "id": 6,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 7,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 8,
+    "name": "PC Gaming Compacta GTX 1660 Super",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 799.99,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
+  },
+  {
+    "id": 9,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 10,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 11,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 12,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 13,
+    "name": "PC Gaming Compacta GTX 1660 Super",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 799.99,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
+  },
+  {
+    "id": 14,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 15,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 16,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 17,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 18,
+    "name": "PC Gaming Compacta GTX 1660 Super",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 799.99,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
+  },
+  {
+    "id": 19,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 20,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 21,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 22,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
+  },
+  {
+    "id": 23,
+    "name": "PC Gaming Compacta GTX 1660 Super",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 799.99,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763490001/a48193a1-e8d3-44b6-bfa5-53c3baac25c6.png"
+  },
+  {
+    "id": 24,
+    "name": "PC GAMING RYZEN FORGE RYZEN 3 4100",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 99.000,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545171/45081-150x146_jhospr.jpg"
+  },
+  {
+    "id": 25,
+    "name": "PC GAMING – RYZEN BASE – RYZEN 5 5600GT – 512GB – 8GB",
+    "category": "computadoras",
+    "subcategory": "PC de Escritorio",
+    "productType": "Pc gaming",
+    "price": 199.990,
+    "stock": 10,
+    "ruta": "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763545726/185_LOW-GAMING-ARMADOS_WEB-150x150.png_jltuum.webp"
   }
 ]
