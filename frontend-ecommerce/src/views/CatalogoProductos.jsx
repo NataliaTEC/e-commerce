@@ -13,6 +13,7 @@ import './catalogoProductos.css'
 import categories from '../data/categories'
 import downArrow from '../assets/icons/down-arrow.svg'
 import WishFill from '../assets/icons/heart.svg'
+import dangerIcon from '../assets/icons/danger.svg'
 import { toggleWishlist, isInWishlist, getWishlist } from '../services/wishlistService'
 
 function useQuery() {
@@ -97,14 +98,34 @@ export default function CatalogoProductos() {
   const agregarAlCarrito = (productId) => {
     addToCart(productId, 1)
       .then((data) => {
-        if (data.ok) alert(`Producto agregado al carrito`)
-        else alert(`Error al agregar el producto al carrito: ${data.error}`)
+        if (data.ok) {
+          // éxito: puedes cambiar esto por un toast más adelante
+          alert(`Producto agregado al carrito`)
+        } else {
+          const errMsg = String(data.error || '')
+          if (errMsg.toLowerCase().includes('iniciar') || errMsg.toLowerCase().includes('sesión')) {
+            setModal({ open: true, title: 'Advertencia', message: 'Debes iniciar sesión para agregar productos al carrito.' })
+          } else {
+            alert(`Error al agregar el producto al carrito: ${data.error}`)
+          }
+        }
       })
-      .catch((err) => alert(`Error al agregar el producto al carrito: ${err}`))
+      .catch((err) => {
+        const msg = String(err || '')
+        if (msg.toLowerCase().includes('401') || msg.toLowerCase().includes('unauthorized') || msg.toLowerCase().includes('sesión')) {
+          setModal({ open: true, title: 'Advertencia', message: 'Debes iniciar sesión para agregar productos al carrito.' })
+        } else {
+          alert(`Error al agregar el producto al carrito: ${err}`)
+        }
+      })
       .finally(() => {
         window.dispatchEvent(new Event('cart-updated'))
       })
   }
+
+  // Modal state for login-required warning
+  const [modal, setModal] = useState({ open: false, title: '', message: '' })
+  const closeModal = () => setModal({ open: false, title: '', message: '' })
 
   const [, setWishlist] = useState(() => getWishlist())
 
@@ -745,6 +766,29 @@ export default function CatalogoProductos() {
           </div>
         </section>
       </main>
+
+      {/* Modal for login-required / warnings */}
+      {modal.open && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal-dialog">
+            <div className="modal-icon-shell">
+              <img src={dangerIcon} alt="Advertencia" className="modal-icon" />
+            </div>
+            <div className="modal-content">
+              <h3 className="modal-title">{modal.title}</h3>
+              <p className="modal-message">{modal.message}</p>
+              <div className="modal-actions">
+                <button className="modal-btn primary" onClick={() => { closeModal(); navigate('/Login') }}>
+                  Iniciar sesión
+                </button>
+                <button className="modal-btn ghost" onClick={closeModal}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
