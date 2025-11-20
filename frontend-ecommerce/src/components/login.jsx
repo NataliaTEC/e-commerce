@@ -6,6 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const ingresar = (e) => {
     e.preventDefault();
@@ -15,24 +16,24 @@ export default function Login() {
       return;
     }
 
+    setLoading(true);
+
     fetch("http://localhost:3000/api/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ email, password }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.ok) {
-          alert("Ingreso exitoso");
           navigate("/");
         } else {
           alert("Error al iniciar sesión: " + data.error);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert(err))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -50,6 +51,7 @@ export default function Login() {
               placeholder="ejemplo@correo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
             />
           </div>
 
@@ -61,11 +63,12 @@ export default function Login() {
               placeholder="*********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
             />
           </div>
 
-          <button type="submit" className="login-btn">
-            Iniciar sesión
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? <div className="spinner-login" /> : "Iniciar sesión"}
           </button>
         </form>
       </div>

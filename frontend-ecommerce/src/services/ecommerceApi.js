@@ -14,7 +14,6 @@ export async function fetchProductsByCategory(categorySlug) {
   return await res.json();
 }
 
-// 🔍 Búsqueda por nombre
 export async function fetchProductsBySearch(q) {
   const params = new URLSearchParams();
   if (q) params.append('q', q);
@@ -59,6 +58,26 @@ export async function clearCart() {
     credentials: 'include'
   });
   if (!res.ok) throw new Error('Error vaciando el carrito');
+  return await res.json();
+}
+
+export async function removeProductFromCart(productId) {
+  const res = await fetch(`${API_BASE}/cart/remove`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ productId }),
+    credentials: 'include'
+  });
+  return await res.json();
+}
+
+export async function updateCartItem(productId, quantity, increment = false) {
+  const res = await fetch(`${API_BASE}/cart/update`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ productId, quantity, increment }),
+    credentials: "include"
+  });
   return await res.json();
 }
 

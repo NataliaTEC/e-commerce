@@ -85,23 +85,16 @@ app.get("/api/products/category/:slug", async (req, res) => {
 
 app.post("/api/cart/add", requireFacade, async (req, res) => {
   const { productId, quantity } = req.body;
-  
-  const snapshot = getFacade(req).cart.createMemento();
-  getFacade(req).cartHistory.save(snapshot);
-
   const result = await getFacade(req).agregarAlCarrito(productId, quantity);
 
   res.json({ ok: true, items: result});
 });
 
 app.post("/api/cart/undo", requireFacade, async (req, res) => {
-  const memento = getFacade(req).cartHistory.getLast();
-  if (!memento) {
-    return res.status(400).json({ error: "No hay cambios para deshacer" });
+  const items = await getFacade(req).deshacerUltimoCambioCarrito();
+  if (!items) {
+    return res.status(400).json({ error: 'No hay cambios para deshacer' });
   }
-  getFacade(req).cart.restore(memento);
-
-  const items = await getFacade(req).obtenerCarrito();
   res.json({ ok: true, items: items });
 });
 
@@ -113,6 +106,23 @@ app.get("/api/cart/get", requireFacade, async (req, res) => {
 app.post("/api/cart/clear", requireFacade, async (req, res) => {
   getFacade(req).vaciarCarrito();
   res.json({ ok: true, items: [] });
+});
+
+app.post("/api/cart/remove", requireFacade, async (req, res) => {
+  const { productId } = req.body;
+  const items = await getFacade(req).quitarDelCarrito(productId);
+  res.json({ ok: true, items: items });
+});
+
+app.post("/api/cart/update", requireFacade, async (req, res) => {
+  const { productId, quantity, increment } = req.body;
+  let items;
+  if (increment) {
+    items = await getFacade(req).agregarAlCarrito(productId, quantity);
+  } else {
+    items = await getFacade(req).actualizarCantidadDelCarrito(productId, quantity);
+  }
+  res.json({ ok: true, items: items });
 });
 
 app.post("/api/login", async (req, res) => {

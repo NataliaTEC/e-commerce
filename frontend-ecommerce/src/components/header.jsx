@@ -11,7 +11,7 @@ import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
-import { fetchCartCount, fetchCart, addToCart } from '../services/ecommerceApi'
+import { fetchCartCount, fetchCart, addToCart, removeProductFromCart, updateCartItem } from '../services/ecommerceApi'
 import { getWishlist, removeFromWishlist, wishlistCount } from '../services/wishlistService'
 // heart fill icon intentionally not used in header to keep compact interface
 import closeIcon from '../assets/icons/close.svg'
@@ -288,7 +288,7 @@ export default function Header() {
                           <div className="item-qty">Cantidad: 
                             <button className="qty-btn" aria-label={`Disminuir ${product.name}`} onClick={async () => {
                               try {
-                                await addToCart(product.id, -1)
+                                await updateCartItem(product.id, -1, true)
                                 const data = await fetchCart()
                                 setCartItems(data.items || [])
                                 setCartTotal(data.total || 0)
@@ -300,7 +300,7 @@ export default function Header() {
                             <strong>{it.quantity}</strong>
                             <button className="qty-btn" aria-label={`Aumentar ${product.name}`} onClick={async () => {
                               try {
-                                await addToCart(product.id, 1)
+                                await updateCartItem(product.id, 1, true)
                                 const data = await fetchCart()
                                 setCartItems(data.items || [])
                                 setCartTotal(data.total || 0)
@@ -311,7 +311,7 @@ export default function Header() {
                             }}>+</button>
                             <button className="remove-btn" aria-label={`Remover ${product.name}`} onClick={async () => {
                               try {
-                                await addToCart(product.id, -it.quantity)
+                                await removeProductFromCart(product.id)
                                 const data = await fetchCart()
                                 setCartItems(data.items || [])
                                 setCartTotal(data.total || 0)

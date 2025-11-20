@@ -18,7 +18,6 @@ export default class ECommerceFacade {
     return await this.productRepo.getByCategory(categorySlug);
   }
 
-  // 🔍 Nuevo: buscar por nombre
   async buscarProductosPorNombre(query) {
     if (!query || !query.trim()) {
       return await this.productRepo.getAll();
@@ -29,11 +28,9 @@ export default class ECommerceFacade {
   async agregarAlCarrito(productId, quantity) {
     const product = await this.productRepo.getById(productId);
     if (!product) throw new Error('Producto no encontrado');
-    console.log("aqui1");
+
     this.cartHistory.save(this.cart.createMemento());
-    console.log("aqui2");
     this.cart.addItem(product, quantity);
-    console.log("aqui3");
     return this.cart.getItems();
   }
 
@@ -41,7 +38,25 @@ export default class ECommerceFacade {
     const memento = this.cartHistory.getLast();
     if (memento) {
       this.cart.restore(memento);
+    } else {
+      throw new Error('No hay cambios para deshacer');
     }
+    return this.cart.getItems();
+  }
+
+  async quitarDelCarrito(productId) {
+    this.cartHistory.save(this.cart.createMemento());
+    this.cart.removeItem(productId);
+    return this.cart.getItems();
+  }
+
+  async actualizarCantidadDelCarrito(productId, quantity) {
+    this.cartHistory.save(this.cart.createMemento());
+    if (quantity <= 0) {
+      this.cart.removeItem(productId);
+      return this.cart.getItems();
+    }
+    this.cart.updateItemQuantity(productId, quantity);
     return this.cart.getItems();
   }
 

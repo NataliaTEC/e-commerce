@@ -135,3 +135,88 @@
 .cart-btn.danger:hover {
   background: #e44141;
 }
+
+
+.trash-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #ff4b4b;
+  margin-left: 12px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.trash-btn:hover {
+  color: #d93636;
+  transform: scale(1.1);
+}
+
+.cart-summary {
+  margin-top: 28px;
+  background: var(--card-bg);
+  padding: 20px 26px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  max-width: 360px;
+  margin-left: auto;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.pay-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pay-btn:hover {
+  background: var(--accent-strong);
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.qty-btn {
+  background: #eee;
+  border: none;
+  padding: 6px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.qty-number {
+  font-size: 16px;
+  font-weight: bold;
+}
+
