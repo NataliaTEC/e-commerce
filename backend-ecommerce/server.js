@@ -136,6 +136,12 @@ app.post("/api/cart/update", requireFacade, async (req, res) => {
   res.json({ ok: true, items: items });
 });
 
+app.get("/api/session/check", requireFacade, (req, res) => {
+  const id = req.session.userId;
+  if (!id) return res.json({ ok: false, loggedIn: false });
+  return res.json({ ok: true, loggedIn: true });
+});
+
 app.post("/api/login", async (req, res) => {
   const user = await clientRepo.findByEmail(req.body.email);
 

@@ -3,6 +3,9 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import "./paymentMethods.css"
 import CustomSelect from "../components/CustomSelect"
+import { isUserLoggedIn } from "../services/ecommerceApi"
+import { useNavigate } from "react-router-dom"
+import LoginRequiredModal from "../components/LoginRequiredModal"
 
 // Iconos por tipo/brand/banco (Cloudinary)
 const CARD_BRANDS = {
@@ -106,6 +109,10 @@ export default function PaymentMethods() {
   const [removingIds, setRemovingIds] = useState([])
   const [cardBrand, setCardBrand] = useState("visa")
   const [bankKey, setBankKey] = useState("bcr")
+  const navigate = useNavigate()
+  
+  const [modal, setModal] = useState({ open: false, title: '', message: '' })
+  const closeModal = () => setModal({ open: false, title: '', message: '' })
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("metodosPago") || "[]")
@@ -124,7 +131,12 @@ export default function PaymentMethods() {
     setBankKey("bcr")
   }
 
-  const abrirModal = () => {
+  const abrirModal = async () => {
+    let data = await isUserLoggedIn();
+    if (!data) {
+      setModal({ open: true, title: 'Advertencia', message: 'Debes iniciar sesión para agregar metodos de pago.' })
+      return
+    }
     resetForm()
     setModalOpen(true)
   }
@@ -544,6 +556,16 @@ export default function PaymentMethods() {
           </div>
         </div>
       )}
+      <LoginRequiredModal
+        open={modal.open}
+        title={modal.title}
+        message={modal.message}
+        onClose={closeModal}
+        onLogin={() => {
+          closeModal();
+          navigate("/Login");
+        }}
+      />
     </div>
   )
 }

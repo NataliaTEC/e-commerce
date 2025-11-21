@@ -15,6 +15,7 @@ import downArrow from '../assets/icons/down-arrow.svg'
 import WishFill from '../assets/icons/heart.svg'
 import dangerIcon from '../assets/icons/danger.svg'
 import { toggleWishlist, isInWishlist, getWishlist } from '../services/wishlistService'
+import LoginRequiredModal from '../components/LoginRequiredModal'
 
 function useQuery() {
   const { search } = useLocation()
@@ -767,28 +768,16 @@ export default function CatalogoProductos() {
         </section>
       </main>
 
-      {/* Modal for login-required / warnings */}
-      {modal.open && (
-        <div className="modal-overlay" role="dialog" aria-modal="true">
-          <div className="modal-dialog">
-            <div className="modal-icon-shell">
-              <img src={dangerIcon} alt="Advertencia" className="modal-icon" />
-            </div>
-            <div className="modal-content">
-              <h3 className="modal-title">{modal.title}</h3>
-              <p className="modal-message">{modal.message}</p>
-              <div className="modal-actions">
-                <button className="modal-btn primary" onClick={() => { closeModal(); navigate('/Login') }}>
-                  Iniciar sesión
-                </button>
-                <button className="modal-btn ghost" onClick={closeModal}>
-                  Cancelar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <LoginRequiredModal
+        open={modal.open}
+        title={modal.title}
+        message={modal.message}
+        onClose={closeModal}
+        onLogin={() => {
+          closeModal();
+          navigate("/Login");
+        }}
+      />
 
       <Footer />
     </div>
