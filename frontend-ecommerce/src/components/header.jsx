@@ -7,11 +7,40 @@ import cartIcon from '../assets/icons/bag.svg'
 import LangIcon from '../assets/icons/language.svg'
 import WishIcon from '../assets/icons/heart.svg'
 import './header.css'
+// import all category icons using Vite glob to map filenames -> URLs
+const _iconModules = import.meta.glob('../assets/iconsCategories/*.svg', { eager: true, as: 'url' })
+const CATEGORY_ICONS = {}
+for (const p in _iconModules) {
+  try {
+    const name = p.split('/').pop().replace('.svg', '')
+    CATEGORY_ICONS[name.toLowerCase()] = _iconModules[p]
+  } catch (e) {}
+}
+
+function findIconUrl(key) {
+  if (!key) return null
+  const normalize = (str) =>
+    String(str)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+
+  const base = normalize(key)
+  const candidates = [base, base.replace(/-/g, ''), base.split('-')[0]]
+  for (const c of candidates) {
+    if (!c) continue
+    if (CATEGORY_ICONS[c]) return CATEGORY_ICONS[c]
+  }
+  return null
+}
 import categories from '../data/categories'
 import storesIcon from '../assets/icons/stores.svg'
 import paymentsIcon from '../assets/icons/paymentMethods.svg'
 import aboutIcon from '../assets/icons/people.svg'
-import { fetchCartCount, fetchCart, addToCart, removeProductFromCart, updateCartItem } from '../services/ecommerceApi'
+import { fetchCartCount, fetchCart, removeProductFromCart, updateCartItem } from '../services/ecommerceApi'
 import { getWishlist, removeFromWishlist, wishlistCount } from '../services/wishlistService'
 // heart fill icon intentionally not used in header to keep compact interface
 import closeIcon from '../assets/icons/close.svg'
@@ -431,26 +460,30 @@ export default function Header() {
         <div className={`mega-menu ${megaOpen ? 'open' : ''}`} onMouseLeave={() => setMegaOpen(false)}>
           <div className="mega-inner">
             <div className="mega-cats">
-              {categories.map((cat) => (
-                <div
-                  key={cat.id}
-                  className={`mega-cat ${activeCat && activeCat.id === cat.id ? 'active' : ''}`}
-                  onMouseEnter={() => setActiveCat(cat)}
-                >
-                  <button
-                    className="mega-cat-btn"
-                    onClick={() =>
-                      navigate(
-                        `/CatalogoProductos?categoria=${encodeURIComponent(
-                          cat.slug.toLowerCase()
-                        )}`
-                      )
-                    }
+              {categories.map((cat) => {
+                const icon = findIconUrl(cat.slug || cat.name)
+                return (
+                  <div
+                    key={cat.id}
+                    className={`mega-cat ${activeCat && activeCat.id === cat.id ? 'active' : ''}`}
+                    onMouseEnter={() => setActiveCat(cat)}
                   >
-                    {cat.name}
-                  </button>
-                </div>
-              ))}
+                    <button
+                      className="mega-cat-btn"
+                      onClick={() =>
+                        navigate(
+                          `/CatalogoProductos?categoria=${encodeURIComponent(
+                            cat.slug.toLowerCase()
+                          )}`
+                        )
+                      }
+                    >
+                      {icon && <img src={icon} alt="" className="cat-icon" />}
+                      {cat.name}
+                    </button>
+                  </div>
+                )
+              })}
             </div>
 
             <div className="mega-content">
@@ -478,7 +511,13 @@ export default function Header() {
                         if (s && typeof s === 'object') {
                           return (
                             <div key={i} className="mega-subsection">
-                              <div className="mega-subsection-title">{s.name}</div>
+                              <div className="mega-subsection-title">
+                                {(() => {
+                                  const subIcon = findIconUrl(s.name)
+                                  return subIcon ? <img src={subIcon} alt="" className="subcat-icon" /> : null
+                                })()}
+                                {s.name}
+                              </div>
                               <ul className="mega-subsection-products">
                                 {Array.isArray(s.products) &&
                                   s.products.map((p, j) => (
