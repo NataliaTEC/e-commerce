@@ -419,13 +419,15 @@ form.search-container {
 }
 .cat-icon { margin-right: 12px }
 .subcat-icon { margin-right: 8px }
-/* Grid layout for subsections to mimic multi-column mega menu */
+
 .mega-panel .mega-subsections {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 26px 28px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  column-gap: 40px;
+  row-gap: 28px;
+  align-items: flex-start;
 }
+
 .mega-subsection { margin-bottom: 6px; }
 .mega-subsection { margin-bottom: 6px; }
 .mega-subsection {
@@ -433,19 +435,23 @@ form.search-container {
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  padding-left: 0; /* ya no reservamos espacio aquí */
+  margin-bottom: 4px;   
 }
+
 .mega-subsection-title {
   font-weight: 700;
   text-transform: uppercase;
   color: #111;
-  font-size: 0.86rem;
-  display: inline-flex;        /* icono + texto alineados */
+  font-size: 0.9rem;
+  display: inline-flex;      
   align-items: center;
   gap: 8px;
   padding-bottom: 6px;
-  position: relative;         /* para el subrayado */
+  position: relative;
+  line-height: 1.3;
+  white-space: nowrap;     
 }
+
 .mega-subsection-title::after {
   content: '';
   position: absolute;
@@ -464,7 +470,6 @@ form.search-container {
 .mega-subsection-title:focus-visible::after {
   transform: scaleX(1);
 }
------
 .mega-subsection .subcat-icon {
   position: static;
   width: 22px;
@@ -476,10 +481,9 @@ form.search-container {
 .mega-subsection-products {
   list-style: none;
   padding: 0;
-  margin: 0;
-  margin-left: 30px;  /* ≈ ancho icono (22) + gap (8) */
+  margin: 6px 0 0 30px; 
 }
-.mega-subsection-products li { margin:8px 0 }
+.mega-subsection-products li { margin:6px 0 }
 .mega-subsection-products li a { color:#70757a; text-decoration:none; display:block; padding:4px 0; border-radius:6px; font-size:0.95rem }
 .mega-subsection-products li a:hover { background: rgba(20,186,183,0.06); color:#14bab9 }
 
@@ -743,3 +747,9 @@ form.search-container {
 .language-toggle .language-label{ font-size:0.95rem; color: #fff }
 .language-toggle .language-caret{ font-size:0.9rem; opacity:0.95; color: #fff }
 @media (max-width:600px){ .language-toggle .language-label{ display:none } }
+@media (max-width: 900px) {
+  .mega-subsection-title {
+    white-space: normal;   /* en móviles permitimos saltos de línea */
+  }
+}
+
