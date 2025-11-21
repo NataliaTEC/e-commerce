@@ -13,6 +13,7 @@ import BuyCreditIcon from "../assets/icons/buy-credit.svg";
 import BuyDeliveryIcon from "../assets/icons/buy-delivery.svg";
 import BuyCashierIcon from "../assets/icons/buy-cashier.svg";
 import Brands from "../components/brands";
+import PurchasingProcess from "../components/purchasingProcess";
 
 export default function SobreNosotros() {
   const [flippedCards, setFlippedCards] = useState({ card1: false, card2: false, card3: false });
@@ -180,7 +181,9 @@ export default function SobreNosotros() {
           </div>
         </section>
 
-        <Brands  />
+        <PurchasingProcess />
+
+        <Brands />
       </main>
 
       <Footer />
