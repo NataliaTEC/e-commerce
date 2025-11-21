@@ -1,0 +1,121 @@
+/* Sección general */
+.metrics-modern {
+  padding: 40px 16px;
+  width: 100%;
+  background: radial-gradient(circle at top, #15171c 0, #05060a 45%, #05060a 100%);
+  color: #f5f5f7;
+}
+
+.metrics-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Tarjetas */
+.metric-card {
+  background: rgba(17, 19, 26, 0.95);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border-top: 3px solid #14bab9; /* acento */
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+  border-color: rgba(20, 186, 185, 0.8);
+  background: rgba(17, 19, 26, 0.98);
+}
+
+/* Icono */
+.metric-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: radial-gradient(circle at top left, #14bab9 0, #0d3e45 60%, #05070b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-svg {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+}
+
+/* Contenido */
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.metric-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.metric-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .metrics-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric-card {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .metrics-modern {
+    padding: 30px 12px;
+  }
+
+  .metrics-container {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    padding: 12px 14px;
+  }
+
+  .metric-number {
+    font-size: 1.3rem;
+  }
+}

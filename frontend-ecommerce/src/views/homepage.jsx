@@ -4,6 +4,7 @@ import Categories from '../components/categories'
 import Brands from '../components/brands'
 import Footer from '../components/footer'
 import './homepage.css'
+import Metrics from '../components/metrics'
 
 export default function PaginaPrincipal() {
   return (
@@ -12,7 +13,9 @@ export default function PaginaPrincipal() {
 
       <main className="content-wrapper">
         <Categories />
+        <Metrics />
         <Brands />
+        
         {/* Catalog component not available yet — render categories only for now */}
       </main>
 
