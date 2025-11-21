@@ -440,29 +440,31 @@ form.search-container {
   text-transform: uppercase;
   color: #111;
   font-size: 0.86rem;
-  display: flex;                 /* <– aquí está la clave */
+  display: inline-flex;        /* icono + texto alineados */
   align-items: center;
-  gap: 8px;                      /* espacio entre icono y texto */
+  gap: 8px;
   padding-bottom: 6px;
-  position: relative;
+  position: relative;         /* para el subrayado */
 }
 .mega-subsection-title::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -6px;
-  width: 200px; /* extended width for clearer visual */
-  height: 4px;
-  background: transparent;
-  border-radius: 3px;
-  transition: background-color 160ms ease, transform 160ms ease;
-}
-.mega-subsection-title:hover::after,
-.mega-subsection-title:focus-visible::after,
-.mega-subsection:hover .mega-subsection-title::after {
+  bottom: -4px;
+  height: 2px;
+  width: 100%;                /* del ancho del texto, no 200px fijos */
   background: #14bab9;
-  transform: translateY(0);
+  border-radius: 999px;
+  transform-origin: left;
+  transform: scaleX(0);       /* empieza oculto */
+  transition: transform 180ms ease-out;
 }
+.mega-subsection:hover .mega-subsection-title::after,
+.mega-subsection-title:hover::after,
+.mega-subsection-title:focus-visible::after {
+  transform: scaleX(1);
+}
+-----
 .mega-subsection .subcat-icon {
   position: static;
   width: 22px;
@@ -481,7 +483,6 @@ form.search-container {
 .mega-subsection-products li a { color:#70757a; text-decoration:none; display:block; padding:4px 0; border-radius:6px; font-size:0.95rem }
 .mega-subsection-products li a:hover { background: rgba(20,186,183,0.06); color:#14bab9 }
 
-----
 /* Styles for simple subcategory cells (strings) to appear as compact cells */
 .mega-subsection.simple { display:flex; align-items:center; padding:8px 10px; border-radius:8px; padding-left:0 }
 .mega-subsection.simple a { color:#333; font-weight:700; padding:8px 6px; display:block }

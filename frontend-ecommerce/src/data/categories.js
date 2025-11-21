@@ -15,10 +15,6 @@ const categories = [
       {
         name: 'Ups y Energia',
         products: ['UPS', 'Reguladores de voltaje', 'Regletas', 'Powerbank']
-      },
-      {
-        name: 'Impresoras',
-        products: ['Impresoras multifuncional', 'Tintas y consumibles']
       }
     ]
   },
@@ -57,10 +53,6 @@ const categories = [
       {
         name: 'Tablets',
         products: ['Samsung', 'Apple', 'Xiaomi', 'Lenovo', 'Huawei']
-      },
-      {
-        name: 'Accesorios',
-        products: ['Adaptadores', 'Cables', 'Cargadores', 'Powerbank', 'Soportes']
       }
     ]
   },
