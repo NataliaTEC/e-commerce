@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import "./paymentMethods.css"
+import CustomSelect from "../components/CustomSelect"
 
 // Iconos por tipo/brand/banco (Cloudinary)
 const CARD_BRANDS = {
@@ -46,6 +47,16 @@ const BANKS = {
     label: "Banco Popular",
     img: "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763672408/b2efb527-df46-4f43-a4eb-20249cd19854.png",
   },
+  bac: {
+    key: "bac",
+    label: "BAC Credomatic",
+    img: "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763681235/bac_j6dfyh.png",
+  },
+  bn: {
+    key: "bn",
+    label: "Banco Nacional",
+    img: "https://res.cloudinary.com/dpuuo4mfh/image/upload/v1763681234/bn_cxb29q.png",
+  }
 }
 
 // Iconos para otros metodos
@@ -500,23 +511,23 @@ export default function PaymentMethods() {
             <h2>Agregar metodo de pago</h2>
 
             <label>Tipo de metodo</label>
-            <select
+            <CustomSelect
               value={tipo}
-              onChange={(e) => {
-                const val = e.target.value
+              onChange={(val) => {
                 setTipo(val)
                 setFormData({})
                 setError("")
                 if (val === "tarjeta" && !cardBrand) setCardBrand("visa")
                 if (val === "transferencia" && !bankKey) setBankKey("bcr")
               }}
-            >
-              <option value="tarjeta">Tarjeta de credito/debito</option>
-              <option value="sinpe">SINPE Movil</option>
-              <option value="transferencia">Transferencia bancaria</option>
-              <option value="paypal">PayPal</option>
-              <option value="stripe">Stripe</option>
-            </select>
+              options={[
+                { value: "tarjeta", label: "Tarjeta de credito/debito" },
+                { value: "sinpe", label: "SINPE Movil" },
+                { value: "transferencia", label: "Transferencia bancaria" },
+                { value: "paypal", label: "PayPal" },
+                { value: "stripe", label: "Stripe" },
+              ]}
+            />
 
             {renderFormFields()}
 
