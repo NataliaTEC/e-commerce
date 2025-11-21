@@ -1,0 +1,109 @@
+/* Contenedor general */
+.brands-section {
+  padding: 24px 0;
+  background: transparent; /* o el color de tu página */
+}
+
+.brands-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Carrusel */
+.brands-carousel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Flechas */
+.brands-arrow {
+  border: none;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.brands-arrow:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #666;
+  transform: translateY(-1px);
+}
+
+/* Pista de marcas */
+.brands-track {
+  display: flex;
+  gap: 56px; /* espacio entre marcas, ajústalo para imitar tu diseño */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 0;
+  scrollbar-width: none;          /* Firefox */
+}
+
+/* Ocultar scrollbar (solo carrusel) */
+.brands-track::-webkit-scrollbar {
+  display: none;                  /* Chrome / Edge / Safari */
+}
+
+/* Cada marca */
+.brand-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+}
+
+.brand-item img {
+  max-height: 40px;
+  max-width: 130px;
+  object-fit: contain;
+  filter: grayscale(0.1);
+  opacity: 0.9;
+  transition: transform 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
+}
+
+/* Sutil interacción */
+.brand-item img:hover {
+  transform: translateY(-2px) scale(1.02);
+  opacity: 1;
+  filter: none;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .brands-carousel {
+    padding-inline: 8px;
+    gap: 6px;
+  }
+
+  .brands-track {
+    gap: 36px;
+  }
+
+  .brand-item img {
+    max-height: 32px;
+  }
+
+  .brands-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+  }
+}

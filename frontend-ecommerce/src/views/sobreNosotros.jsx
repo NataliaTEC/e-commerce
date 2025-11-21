@@ -12,6 +12,7 @@ import BuyCartIcon from "../assets/icons/buy-cart.svg";
 import BuyCreditIcon from "../assets/icons/buy-credit.svg";
 import BuyDeliveryIcon from "../assets/icons/buy-delivery.svg";
 import BuyCashierIcon from "../assets/icons/buy-cashier.svg";
+import Brands from "../components/brands";
 
 export default function SobreNosotros() {
   const [flippedCards, setFlippedCards] = useState({ card1: false, card2: false, card3: false });
@@ -179,11 +180,7 @@ export default function SobreNosotros() {
           </div>
         </section>
 
-        <section className="cta-section fade-in">
-          <h2>Forma parte del futuro tecnológico</h2>
-          <p>Explorá nuestro catálogo y descubrí productos diseñados para inspirar.</p>
-          <a href="/" className="cta-btn">Ir al catálogo</a>
-        </section>
+        <Brands  />
       </main>
 
       <Footer />

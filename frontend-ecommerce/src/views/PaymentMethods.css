@@ -365,31 +365,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 10px;
+  padding: 9px 10px;
   border-radius: 8px;
   background: #1d1d1f;
   color: #f5f5f7;
   border: 1px solid rgba(255,255,255,0.06);
   cursor: pointer;
-  box-shadow: none !important; /* remove any heavy outline */
-  -webkit-appearance: none;
-  appearance: none;
-  background-clip: padding-box; /* ensure border follows same line */
-  outline: none !important; /* ensure no default UA ring shows */
-  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-select .cs-toggle:focus {
   outline: none;
-  /* keep a subtle focus style but not a thick ring */
-  box-shadow: 0 0 0 1px rgba(20,186,185,0.14) !important;
-  border-color: rgba(20,186,185,0.7) !important;
-}
-
-.pm-modal-content input,
-.custom-select .cs-toggle {
-  height: 40px;
-  line-height: 22px;
+  box-shadow: 0 0 0 2px rgba(20,186,185,0.12);
+  border-color: #14bab9;
 }
 
 .custom-select .cs-caret {
