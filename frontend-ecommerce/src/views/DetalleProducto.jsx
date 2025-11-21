@@ -6,6 +6,7 @@ import { addToWishlist, removeFromWishlist, isInWishlist } from "../services/wis
 import "./detalleProducto.css"
 import Header from "../components/header"
 import Footer from "../components/footer"
+import LoginRequiredModal from "../components/LoginRequiredModal"
 
 export default function DetalleProducto() {
   const { id } = useParams()
@@ -16,6 +17,9 @@ export default function DetalleProducto() {
   const [quantity, setQuantity] = useState(1)
   const [wish, setWish] = useState(false)
   const [similar, setSimilar] = useState([])
+
+  const [modal, setModal] = useState({ open: false, title: '', message: '' })
+  const closeModal = () => setModal({ open: false, title: '', message: '' })
 
   useEffect(() => {
     async function loadProduct() {
@@ -45,13 +49,29 @@ export default function DetalleProducto() {
   }, [id])
 
   const addItemToCart = async () => {
-    try {
-      await addToCart(product.id, quantity)
-      window.dispatchEvent(new Event("cart-updated"))
-      alert("Producto agregado al carrito ✔")
-    } catch (e) {
-      alert("No se pudo agregar al carrito")
-    }
+      await addToCart(product.id, quantity).then((data) => {
+        if (data.ok) {
+          alert(`Producto agregado al carrito`)
+        } else {
+          const errMsg = String(data.error || '')
+          if (errMsg.toLowerCase().includes('iniciar') || errMsg.toLowerCase().includes('sesión')) {
+            setModal({ open: true, title: 'Advertencia', message: 'Debes iniciar sesión para agregar productos al carrito.' })
+          } else {
+            alert(`Error al agregar el producto al carrito: ${data.error}`)
+          }
+        }
+      })
+      .catch((err) => {
+        const msg = String(err || '')
+        if (msg.toLowerCase().includes('401') || msg.toLowerCase().includes('unauthorized') || msg.toLowerCase().includes('sesión')) {
+          setModal({ open: true, title: 'Advertencia', message: 'Debes iniciar sesión para agregar productos al carrito.' })
+        } else {
+          alert(`Error al agregar el producto al carrito: ${err}`)
+        }
+      })
+      .finally(() => {
+        window.dispatchEvent(new Event('cart-updated'))
+      })
   }
 
   const toggleWishlist = () => {
@@ -196,6 +216,18 @@ export default function DetalleProducto() {
         ) : (
             <div className="product-detail-container">Producto no encontrado</div>
         )}
+
+        <LoginRequiredModal
+            open={modal.open}
+            title={modal.title}
+            message={modal.message}
+            onClose={closeModal}
+            onLogin={() => {
+                closeModal();
+                navigate("/Login");
+            }}
+        />
+
         <Footer />
     </div>
   )

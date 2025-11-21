@@ -92,6 +92,13 @@ export async function fetchCartCount() {
   return cart.items ? cart.items.reduce((sum, item) => sum + item.quantity, 0) : 0;
 }
 
+export async function isUserLoggedIn() {
+  const res = await fetch(`${API_BASE}/session/check`, {
+    credentials: 'include'
+  });
+  return res.ok;
+}
+
 // Pagos
 export async function pay(tipoPago, datosPago) {
   const res = await fetch(`${API_BASE}/checkout`, {

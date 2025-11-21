@@ -410,52 +410,6 @@
   padding: 10px 12px 4px;
 }
 
-/* Modal styles (login / warnings) */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45); /* semi-transparent backdrop */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none; /* ensure overlay doesn't add blur/transparency to dialog */
-}
-.modal-dialog {
-  width: min(520px, 92%);
-  background: #ffffff; /* force solid white background for the dialog */
-  opacity: 1; /* ensure fully opaque */
-  border-radius: 12px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-  display: flex;
-  gap: 18px;
-  padding: 20px;
-  align-items: center;
-  border: 1px solid rgba(20,186,185,0.08);
-}
-.modal-icon-shell {
-  min-width: 64px;
-  min-height: 64px;
-  border-radius: 999px;
-  background: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal-icon {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1);
-}
-.modal-content { flex: 1 }
-.modal-title { margin: 0 0 6px; color: var(--text); font-size: 1.05rem }
-.modal-message { margin: 0 0 12px; color: var(--muted) }
-.modal-actions { display:flex; gap:10px; justify-content:flex-end }
-.modal-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid transparent; cursor: pointer }
-.modal-btn.primary { background: var(--accent); color: white }
-.modal-btn.ghost { background: transparent; border: 1px solid rgba(0,0,0,0.08) }
-
 .product-name {
   font-size: 0.98rem;
   margin: 0 0 4px;
