@@ -159,7 +159,7 @@ export default function Login() {
           <button
             type="button"
             className="link-button"
-            onClick={() => navigate("/register")}
+            onClick={() => navigate("/registro")}
           >
             Regístrate aquí
           </button>

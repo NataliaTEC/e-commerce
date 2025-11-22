@@ -9,6 +9,7 @@ import LoginPage from './views/loginPage'
 import SobreNosotros from './views/sobreNosotros'
 import DetalleProducto from './views/detalleProducto'
 import PaymentMethods from "./views/paymentMethods"
+import RegisterPage from './views/registerPage'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/CatalogoProductos" element={<CatalogoProductos />} />
           <Route path="/carrito" element={<CarritoProductos />} />
           <Route path="/sobreNosotros" element={<SobreNosotros />} />
