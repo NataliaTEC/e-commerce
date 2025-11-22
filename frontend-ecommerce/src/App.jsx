@@ -10,6 +10,7 @@ import SobreNosotros from './views/sobreNosotros'
 import DetalleProducto from './views/detalleProducto'
 import PaymentMethods from "./views/paymentMethods"
 import RegisterPage from './views/registerPage'
+import Checkout from './views/checkout'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/sobreNosotros" element={<SobreNosotros />} />
           <Route path="/detalleProducto/:id" element={<DetalleProducto />} />
           <Route path="/payments" element={<PaymentMethods />} />
+          <Route path="/checkout" element={<Checkout />} />
           {/* para los links del Header */}
           <Route path="/catalog" element={<CatalogoProductos />} />
         </Routes>
