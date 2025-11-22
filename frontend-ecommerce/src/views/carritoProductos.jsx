@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
+import removeIcon from '../assets/icons/remove.svg'
 import Footer from "../components/footer";
 
 import { 
@@ -148,6 +149,14 @@ export default function CarritoProductos() {
                           <button onClick={() => decrementar(product.id, item.quantity)} className="qty-btn">−</button>
                           <span className="qty-number">{item.quantity}</span>
                           <button onClick={() => incrementar(product.id, item.quantity)} className="qty-btn">+</button>
+                          {/* trash next to + */}
+                          <button
+                            className="trash-btn small"
+                            onClick={() => eliminarItem(product.id)}
+                            aria-label="Eliminar producto"
+                          >
+                            <img src={removeIcon} alt="Eliminar" className="trash-icon" />
+                          </button>
                         </div>
 
                         <p className="cart-item-price">
@@ -158,13 +167,6 @@ export default function CarritoProductos() {
                       <div className="cart-item-total">
                         ₡{(product.price * item.quantity).toLocaleString("es-CR")}
                       </div>
-
-                      <button
-                        className="trash-btn"
-                        onClick={() => eliminarItem(product.id)}
-                      >
-                        🗑️
-                      </button>
                     </article>
                   );
                 })}

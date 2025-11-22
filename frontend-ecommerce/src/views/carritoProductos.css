@@ -152,6 +152,8 @@
   transform: scale(1.1);
 }
 
+.trash-icon { width: 20px; height: 20px; display: block }
+
 .cart-summary {
   margin-top: 28px;
   background: var(--card-bg);
@@ -203,6 +205,32 @@
   align-items: center;
   gap: 8px;
   margin-top: 8px;
+}
+
+/* small variant of trash button when placed next to quantity */
+.qty-controls .trash-btn.small {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin-left: 6px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.12s ease, border-color 0.12s ease;
+}
+.qty-controls .trash-btn.small:hover {
+  background: rgba(20,186,185,0.12);
+  transform: scale(1.03);
+  border-color: rgba(20,186,185,0.18);
+}
+.qty-controls .trash-btn.small .trash-icon { width:18px; height:18px; display:block }
+
+/* make the + button hover match the trash button hover */
+.qty-btn:hover {
+  background: rgba(20,186,185,0.12);
 }
 
 .qty-btn {
