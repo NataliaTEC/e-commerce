@@ -3,6 +3,8 @@ import session from "express-session";
 import cors from "cors";
 import ProductRepositoryJSON from "./infra/ProductRepositoryJSON.js";
 import ClientRepositoryJSON from "./infra/ClientRepositoryJSON.js";
+import fs from "fs/promises";
+import path from "path";
 import ECommerceFacade from "./facade/ECommerceFacade.js";
 import Cart from "./domain/Cart.js";
 import CartHistory from "./domain/memento/CartHistory.js";
@@ -166,6 +168,46 @@ app.post("/api/login", async (req, res) => {
   USERS.set(user.id, facade);
 
   res.json({ ok: true });
+});
+
+// Registro de usuarios
+app.post("/api/register", async (req, res) => {
+  try {
+    const { name, email, password } = req.body || {};
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "name, email and password are required" });
+    }
+
+    // usar el repositorio para revisar si ya existe
+    const existing = await clientRepo.findByEmail(email);
+    if (existing) {
+      return res.status(409).json({ error: "Email already registered" });
+    }
+
+    const clientsPath = path.resolve("./data/clients.json");
+    let raw = "[]";
+    try {
+      raw = await fs.readFile(clientsPath, "utf8");
+    } catch (err) {
+      // si no existe, comenzamos con array vacío
+      raw = "[]";
+    }
+
+    const clients = JSON.parse(raw || "[]");
+
+    const maxId = clients.reduce((m, c) => Math.max(m, Number(c.id || 0)), 0);
+    const newId = maxId + 1;
+
+    const newClient = { id: newId, name, email, password, cart: null };
+    clients.push(newClient);
+
+    await fs.writeFile(clientsPath, JSON.stringify(clients, null, 2), "utf8");
+
+    return res.status(201).json({ ok: true, id: newId, name, email });
+  } catch (err) {
+    console.error("Error registering user:", err);
+    return res.status(500).json({ error: "Failed to register user" });
+  }
 });
 
 const PORT = 3000;
